@@ -24,7 +24,15 @@ Client-side repo for the Flourish group project. Main project repo can be found 
 
 ### Figma designs
 
-<!-- to-do -->
+* [Main Page](assets/figma/main.png)
+* [Signup](assets/figma/signup.png)
+* [Login](assets/figma/login.png)
+* [Results](assets/figma/results.png)
+* [Add a product](assets/figma/add_product.png)
+* [Map View](assets/figma/map.png)
+* [User Page](assets/figma/user.png)
+* [User Profile](assets/figma/profile.png)
+* [Product details](assets/figma/product.png)
 
 ## Changelog
 
