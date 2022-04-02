@@ -4,7 +4,7 @@ console.log(__dirname)
 
 const ROOT_DIRECTORY = path.join(__dirname, '../');
 const PUBLIC_DIRECTORY = path.join(ROOT_DIRECTORY, 'public');
-
+console.log(PUBLIC_DIRECTORY)
 const config = {
     entry: [path.resolve(__dirname, '../src/index.js')],
     output: {
@@ -21,8 +21,8 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(PUBLIC_DIRECTORY, 'index.html')//,
-            //favicon: path.join(PUBLIC_DIRECTORY, 'favicon.png')
+            template: path.join(PUBLIC_DIRECTORY, 'index.html'),
+            favicon: path.join(PUBLIC_DIRECTORY, 'favicon.ico')
         })
     ],
     module: {
