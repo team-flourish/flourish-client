@@ -1,8 +1,10 @@
 import React from "react";
+import { Brand } from '../../components'
+
 
 const MainPage = () => {
     return (
-        <h1>hello</h1>
+    <Brand/>
     );
 }
 
