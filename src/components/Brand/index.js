@@ -5,7 +5,7 @@ const Brand = () => {
      
     return (
         <div className='container'>
-        <h1 className='title'>FLUORISH</h1>
+        <h1 className='title'>FLOURISH</h1>
         </div>
     );
 }
