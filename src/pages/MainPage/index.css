@@ -1,0 +1,53 @@
+div.background-img-position{
+    position:absolute;
+    z-index: -10;
+  }
+
+div.sign-in-up-buttons-container{
+    position: absolute;
+    bottom: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 141px;
+    display: flex;
+    flex-direction: column;
+}
+
+button.log-in{
+    position: relative;
+    width: 374px;
+    height: 60px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 30px;
+    font-weight: 400;
+    color: azure;
+    border-radius: 12px;
+}
+
+section.sign-up-row{
+    margin-top: 50px;
+}
+
+button.sign-up{
+    width: 122px;
+    height: 31px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: azure;
+    border-radius: 5px;
+}
+
+div.make-me-flex{
+    width: 330px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
