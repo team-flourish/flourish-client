@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Brand } from '../../components'
 import Background from '../../images/toa-heftiba-l_ExpFwwOEg-unsplash.jpg';
-import './index.css'
+import './style.css'
 
-const shoot = () => {
-  alert("Sign up/in clicked!");
-}
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 var sectionStyle = {
     width: "100vw",
@@ -18,6 +19,15 @@ var sectionStyle = {
 }
 
 const MainPage = () => {
+
+  let navigate = useNavigate();
+
+  async function handleSubmitUp(event) {
+    event.preventDefault();
+    await delay(400);
+    navigate("./signup", {replace: true});
+  }
+
     return (
     <>
       <div className="background-img-position">
@@ -27,13 +37,13 @@ const MainPage = () => {
       <div className="sign-in-up-buttons-container">
 
         <section>
-          <button className="log-in" onClick={shoot}>  Log in </button>
+          <button className="log-in" onClick={handleSubmitUp}>  Log in </button>
         </section>
 
         <section className="sign-up-row">
           <div className="make-me-flex">
           <span> Don't have an account?</span>
-          <button className="sign-up" onClick={shoot}>  Sign Up </button>
+          <button className="sign-up" onClick={handleSubmitUp}>  Sign Up </button>
           </div>
         </section>
         
