@@ -12,7 +12,7 @@ var sectionStyle = {
     width: "100vw",
     height:'100vh',
     backgroundImage: `url(${Background})`,
-    backgroundPosition: 'left bottom',
+    backgroundPosition: 'center bottom',
     backgroundRepeat: 'no-repeat',
     opacity: 0.4,
     margin:0,
