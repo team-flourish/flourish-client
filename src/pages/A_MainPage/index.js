@@ -12,8 +12,9 @@ var sectionStyle = {
     width: "100vw",
     height:'100vh',
     backgroundImage: `url(${Background})`,
-    backgroundPosition: 'center 0%',
+    backgroundPosition: 'left bottom',
     backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
     opacity: 0.4,
     margin:0,
     border:0
@@ -41,7 +42,7 @@ const MainPage = () => {
         <div style={ sectionStyle }> </div>
       </div>
       <Brand/>
-      {/* <div className="sign-in-up-buttons-container">
+      <div className="sign-in-up-buttons-container">
 
         <section>
           <button className="log-in" onClick={handleSubmitIn}>  Log in </button>
@@ -54,7 +55,7 @@ const MainPage = () => {
           </div>
         </section>
         
-      </div> */}
+      </div>
     </>
     );
 }
