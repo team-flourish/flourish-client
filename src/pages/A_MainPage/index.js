@@ -41,7 +41,7 @@ const MainPage = () => {
         <div style={ sectionStyle }> </div>
       </div>
       <Brand/>
-      <div className="sign-in-up-buttons-container">
+      {/* <div className="sign-in-up-buttons-container">
 
         <section>
           <button className="log-in" onClick={handleSubmitIn}>  Log in </button>
@@ -54,7 +54,7 @@ const MainPage = () => {
           </div>
         </section>
         
-      </div>
+      </div> */}
     </>
     );
 }
