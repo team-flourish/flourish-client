@@ -9,17 +9,6 @@
 }
 
 
-input.input-sign-in-up{    
-    width: 255px;
-    height: 38px;
-    background-color: rgb(208, 212, 208);
-    border: 1px;
-    font-size: 18px;
-    font-weight: 100;
-    color: black;
-    border-radius: 10px;
-}
-
 input.log-in-now-button{
     position: relative;
     width: 374px;
@@ -31,4 +20,15 @@ input.log-in-now-button{
     color: azure;
     border-radius: 12px;
     margin-top: 225px;
+}
+
+input.input-sign-in-up{    
+    width: 255px;
+    height: 38px;
+    background-color: rgb(208, 212, 208);
+    border: 1px;
+    font-size: 18px;
+    font-weight: 100;
+    color: black;
+    border-radius: 10px;
 }
