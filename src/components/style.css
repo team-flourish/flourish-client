@@ -17,7 +17,7 @@ input.input-sign-in-up{     /*  form fields*/
 width: min(80vw,255px);
 height: 38px;
 background-color: rgb(208, 212, 208);
-font-size: 18px;
+font-size: 30px;
 font-weight: 100;
 color: black;
 border-radius: 10px;
@@ -27,7 +27,7 @@ border: 0;
 @media screen and (max-height: 835px) {
 
     input.input-sign-in-up{     /*  form fields*/
-        font-size: 15px;
+        font-size:25px;
         }
     
     h3.sign-up-in-field-title{  /*  form fields titles e.g. Re-enter password*/

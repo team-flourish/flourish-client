@@ -15,13 +15,13 @@ const MainPage = () => {
   async function handleSubmitUp(event) {
     event.preventDefault();
     await delay(400);
-    navigate("./signup", {replace: true});
+    navigate("./signup");
   }
 
   async function handleSubmitIn(event) {
     event.preventDefault();
     await delay(400);
-    navigate("./login", {replace: true});
+    navigate("./login");
   }
 
     return (

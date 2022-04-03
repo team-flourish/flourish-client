@@ -19,7 +19,7 @@ input.sign-up-now-button{
     font-weight: 500;
     color: azure;
     border-radius: 12px;
-    margin-top: 9vh;
+    margin-top: 13vh;
 }
 
 @media screen and (max-height: 700px) {
