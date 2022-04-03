@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
 import './style.css'
+import '../style.css'
 
 const handleSubmit = () => {
     alert("Sign up/in clicked!");
@@ -28,7 +29,7 @@ const LogInForm = () => {
         aria-label="login-aria"  
       >
          <div>
-          <h3 className= "log-in-title">Email</h3>
+          <h3 className= "sign-up-in-field-title">Email</h3>
           <input
             type="email"
             name="email"
@@ -40,7 +41,7 @@ const LogInForm = () => {
           />
         </div>
         <div>
-          <h3 className= "log-in-title">Password</h3>
+          <h3 className= "sign-up-in-field-title">Password</h3>
           <input
             type="password"
             name="password"
@@ -53,7 +54,7 @@ const LogInForm = () => {
         </div>
         <input
           type="submit"
-          className="sign-up-now"
+          className="log-in-now-button"
           value="Log in"
         />
       </form>

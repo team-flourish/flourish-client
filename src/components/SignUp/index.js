@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
 import './style.css'
+import '../style.css'
 
 const handleSubmit = () => {
     alert("Sign up/in clicked!");
@@ -28,7 +29,7 @@ const SignUpForm = () => {
         aria-label="register"  
       >
         <div>
-          <h3 className= "sign-up-title">Name</h3>
+          <h3 className= "sign-up-in-field-title">Name</h3>
           <input
             type="text"
             name="name"
@@ -40,7 +41,7 @@ const SignUpForm = () => {
           />
         </div>
         <div>
-          <h3 className= "sign-up-title">Email</h3>
+          <h3 className= "sign-up-in-field-title">Email</h3>
           <input
             type="email"
             name="email"
@@ -52,7 +53,7 @@ const SignUpForm = () => {
           />
         </div>
         <div>
-          <h3 className= "sign-up-title">Create password</h3>
+          <h3 className= "sign-up-in-field-title">Create password</h3>
           <input
             type="password"
             name="password"
@@ -64,7 +65,7 @@ const SignUpForm = () => {
           />
         </div>
         <div>
-          <h3 className= "sign-up-title">Re-enter password</h3>
+          <h3 className= "sign-up-in-field-title">Re-enter password</h3>
           <input
             type="password"
             name="confirmPassword"
@@ -77,7 +78,7 @@ const SignUpForm = () => {
         </div>
         <input
           type="submit"
-          className="sign-up-now"
+          className="sign-up-now-button"
           value="Sign up"
         />
       </form>

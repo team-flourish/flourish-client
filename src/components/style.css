@@ -1,0 +1,25 @@
+.make-me-flex-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+h3.sign-up-in-field-title{
+    margin: 35px 0px 2px 1px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 25px;
+   }
+
+
+   input.input-sign-in-up{    
+    width: 255px;
+    height: 38px;
+    background-color: rgb(208, 212, 208);
+    border: 1px;
+    font-size: 18px;
+    font-weight: 100;
+    color: black;
+    border-radius: 10px;
+}

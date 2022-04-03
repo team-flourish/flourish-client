@@ -1,26 +1,13 @@
-#form-registration{
+#form-login{
     position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
-    margin-top: 252px;
+    margin-top: 325px;
 }
 
-.make-me-flex-2{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-h3.sign-up-title{
- margin: 35px 0px 2px 1px;
- text-align: left;
- font-weight: 400;
- font-size: 25px;
-}
 
 input.input-sign-in-up{    
     width: 255px;
@@ -33,7 +20,7 @@ input.input-sign-in-up{
     border-radius: 10px;
 }
 
-input.sign-up-now{
+input.log-in-now-button{
     position: relative;
     width: 374px;
     height: 60px;
@@ -43,5 +30,5 @@ input.sign-up-now{
     font-weight: 500;
     color: azure;
     border-radius: 12px;
-    margin-top: 94px;
+    margin-top: 225px;
 }
