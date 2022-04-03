@@ -28,6 +28,12 @@ const MainPage = () => {
     navigate("./signup", {replace: true});
   }
 
+  async function handleSubmitIn(event) {
+    event.preventDefault();
+    await delay(400);
+    navigate("./login", {replace: true});
+  }
+
     return (
     <>
       <div className="background-img-position">
@@ -37,7 +43,7 @@ const MainPage = () => {
       <div className="sign-in-up-buttons-container">
 
         <section>
-          <button className="log-in" onClick={handleSubmitUp}>  Log in </button>
+          <button className="log-in" onClick={handleSubmitIn}>  Log in </button>
         </section>
 
         <section className="sign-up-row">
