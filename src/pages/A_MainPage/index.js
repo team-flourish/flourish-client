@@ -14,7 +14,6 @@ var sectionStyle = {
     backgroundImage: `url(${Background})`,
     backgroundPosition: 'left bottom',
     backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',
     opacity: 0.4,
     margin:0,
     border:0
