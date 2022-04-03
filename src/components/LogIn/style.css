@@ -1,34 +1,22 @@
 #form-login{
-    position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
-    margin-top: 325px;
+    margin-top: 20vh;
 }
 
 
-input.log-in-now-button{
+input.log-in-now-button{ /* green log in button*/
     position: relative;
-    width: 374px;
-    height: 60px;
+    width: min(80vw,374px);
+    min-height: 60px;
     background-color: #3D7E60;
     border: 0;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 400;
     color: azure;
     border-radius: 12px;
-    margin-top: 225px;
-}
-
-input.input-sign-in-up{    
-    width: 255px;
-    height: 38px;
-    background-color: rgb(208, 212, 208);
-    border: 1px;
-    font-size: 18px;
-    font-weight: 100;
-    color: black;
-    border-radius: 10px;
+    margin-top: 20vh;
 }
