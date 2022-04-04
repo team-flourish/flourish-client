@@ -1,0 +1,46 @@
+main.productpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.productpage > section {
+    background-color: #C9DBD2;
+    width: 95%;
+    max-width: 1050px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 85px;
+}
+
+#productInfo {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 28px;
+}
+
+#productLister {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+
+.productpage h2, .productpage .productCategory {
+    display: inline;
+    margin: 7px;
+}
+
+#productDistance {
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+}
+
+#productImage, #map {
+    width: 100%;
+    height: calc(100vw * .95);
+    max-height: 620px;
+}

@@ -12,7 +12,7 @@ const ProductList = () => {
                         <h2>King Prawns</h2>
                         <div className="productCategory">Veg</div>
                     </div>
-                    <span className="productLister">Posted by: Bojin (5) ⭐</span>
+                    <span className="productLister">Posted by: Bojin (5)⭐</span>
                     <span className="productDistance">1 mile away</span>
                 </div>
             </div>
