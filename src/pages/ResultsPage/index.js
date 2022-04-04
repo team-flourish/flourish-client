@@ -10,7 +10,7 @@ const ResultsPage = () => {
         <Header>
             <FilterList />
         </Header>
-        <main>
+        <main className="productspage">
             <ProductList />
         </main>
         <NavBar />

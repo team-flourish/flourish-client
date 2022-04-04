@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage } from "./pages";
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                     <Route path="/login" element={<LogInPage />}/>
                     <Route path="/new" element={<AddaProduct />}/>
                     <Route path="/products" element={<ResultsPage />}/>
+                    <Route path="/user" element={<ProfilePage />}/>
                 </Routes>
             </BrowserRouter>
         </React.StrictMode>
