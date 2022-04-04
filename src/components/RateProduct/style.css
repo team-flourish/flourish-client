@@ -1,0 +1,17 @@
+/* rating */
+
+#rateProduct {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#rateProduct > h3 {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+
+.ratingStars {
+    text-align: center;
+}

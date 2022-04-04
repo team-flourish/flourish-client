@@ -1,4 +1,5 @@
 import React from "react";
+import { RateProduct } from "../../components";
 import { Header, NavBar } from "../../layout";
 
 import "./style.css";
@@ -12,10 +13,7 @@ const ProductPage = () => {
                 <div id="productImage" style={{backgroundImage: `url('http://placehold.jp/396x396.png')`}}></div>
                 <div id="productInfo">
                     <div className="flex-row space-between margin-b">
-                        <div id="rateProduct">
-                            <h3>Rate this listing:</h3>
-                            <div className="ratingStars">⭐⭐⭐☆☆</div>
-                        </div>
+                        <RateProduct />
                         <div id="productLister">Posted by: Bojin (5)⭐</div>
                     </div>
                     <div className="flex-row">
