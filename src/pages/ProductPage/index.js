@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
 
@@ -6,6 +6,7 @@ import "./style.css";
 
 const ProductPage = () => {
     const loading = false;
+    const [mapLocation, setMapLocation] = useState({ lat: 53.480754074394234, lng: -2.234619925983326 });
 
     return (
         <>
@@ -25,7 +26,7 @@ const ProductPage = () => {
                     </div>
                     <span id="productDistance">1 mile away</span>
                 </div>
-                <Map />
+                <Map marker={mapLocation} onMapClick={setMapLocation}/>
             </section>
         </main>
         }
