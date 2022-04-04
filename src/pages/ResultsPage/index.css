@@ -1,15 +1,3 @@
-header {
-    box-shadow: 0 4px 4px #3D7E6099 ;
-}
-
-h1 {
-    text-align: center;
-    margin: 0;
-    padding: 0.4em 0;
-    font-weight: 900;
-    font-size: 50px;
-}
-
 h2 {
     margin-left: 20px;
     margin-bottom: 10px;
@@ -21,6 +9,29 @@ h2 {
     color: #c4c4c4;
 }
 
+header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* logo */
+
+.brand {
+    box-shadow: 0 4px 4px #3D7E6099;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0.4em 0;
+    font-weight: 900;
+    font-size: 50px;
+}
+
+/* filter list */
+
 #filterList {
     display: flex;
     flex-direction: row;
@@ -28,16 +39,85 @@ h2 {
     max-width: 100vw;
     overflow: auto;
     padding-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .filterListItem {
-    background-color: #37D02A;
+    background-color: #c4c4c4;
     padding: 3px 13px;
     border-radius: 40px;
     font-weight: 600;
     font-size: 20px;
     margin: 4px 8px;
 }
+
+/* product list */
+
+#productsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 85px;
+    margin-top: 210px;
+}
+
+.productListItem {
+    background-color: #C9DBD2;
+    width: 90%;
+    display: flex;
+    margin: 5px;
+}
+
+@media (min-width: 992px) {
+    #productsList {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .productListItem {
+        width: 48%;
+        flex-shrink: 0;
+    }
+}
+
+@media (min-width: 1366px) {
+    .productListItem {
+        width: 32%;
+    }
+}
+
+.productImage {
+    min-width: 160px;
+    width: 160px;
+    height: 160px;
+}
+
+.productInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0 10px 10px;
+    font-weight: 500;
+}
+
+.productInfo h2 {
+    margin: 0;
+    display: inline;
+}
+
+.productCategory {
+    background-color: #37D02A;
+    padding: 3px 13px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 4px 8px;
+    width: fit-content;
+    display: inline;
+}
+
+/* navigation */
 
 footer {
     position: fixed;
@@ -57,4 +137,8 @@ nav a {
     align-items: center;
     height: 80px;
     width: 25%;
+}
+
+nav a img {
+    height: 67%;
 }

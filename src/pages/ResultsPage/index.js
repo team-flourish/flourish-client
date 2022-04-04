@@ -1,30 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Brand } from "../../components";
 
+import HomeIcon from "../../images/icons/home.svg";
+import MapIcon from "../../images/icons/map.svg";
+import AddIcon from "../../images/icons/add.svg";
+import UserIcon from "../../images/icons/user.svg";
 import './index.css';
 
 const ResultsPage = () => {
     return (
         <>
         <header>
-            <h1>FLOURISH</h1>
-        </header>
-        <main>
+            <div className="brand">
+                <h1>FLOURISH</h1>
+            </div>
             <h2 className="muted">Filter by food type</h2>
             <div id="filterList">
-                <div className="filterListItem">Veg</div>
-                <div className="filterListItem">Fruit</div>
-                <div className="filterListItem">Meat</div>
-                <div className="filterListItem">Dairy</div>
-                <div className="filterListItem">Eggs</div>
-                <div className="filterListItem">Bread</div>
+                <div className="filterListItem" style={{backgroundColor: '#37D02A'}}>Veg</div>
+                <div className="filterListItem" style={{backgroundColor: '#D02A66'}}>Fruit</div>
+                <div className="filterListItem" style={{backgroundColor: '#FF3E3E'}}>Meat</div>
+                <div className="filterListItem" style={{backgroundColor: '#CBBC95'}}>Dairy</div>
+                <div className="filterListItem" style={{backgroundColor: '#FFBC0F'}}>Eggs</div>
+                <div className="filterListItem" style={{backgroundColor: '#2AD0D0'}}>Fish</div>
             </div>
+        </header>
+        <main>
             <section id="productsList">
                 <div className="productListItem">
-                    <img className="productImage"/>
+                    <div className="productImage" style={{backgroundImage: `url('http://placehold.jp/160x160.png')`}}></div>
                     <div className="productInfo">
-                        <h2>Tomatoes</h2>
+                        <div>
+                            <h2>King Prawns</h2>
+                            <div class="productCategory">Veg</div>
+                        </div>
                         <span className="productLister">Posted by: Bojin (5) ⭐</span>
                         <span className="productDistance">1 mile away</span>
                     </div>
@@ -33,10 +41,10 @@ const ResultsPage = () => {
         </main>
         <footer>
             <nav>
-                <Link to="products">icon</Link>
-                <Link to="products/map">icon</Link>
-                <Link to="products/new">icon</Link>
-                <Link to="profile">icon</Link>
+                <Link to="/products"><img src={HomeIcon}/></Link>
+                <Link to="map"><img src={MapIcon}/></Link>
+                <Link to="/new"><img src={AddIcon}/></Link>
+                <Link to="/profile"><img src={UserIcon}/></Link>
             </nav>
         </footer>
         </>
