@@ -1,0 +1,34 @@
+#form-registration{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 12vh;
+}
+
+
+input.sign-up-now-button{
+    position: relative;
+    width: min(80vw,374px);
+    min-height: 60px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: azure;
+    border-radius: 12px;
+    margin-top: 13vh;
+}
+
+@media screen and (max-height: 700px) {
+    #form-registration{
+        margin-top: 1vh;
+    }
+
+    input.sign-up-now-button{
+        min-height: 40px;
+        margin-top: 5vh;
+    }
+}
