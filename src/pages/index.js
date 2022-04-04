@@ -4,3 +4,4 @@ export { default as LogInPage } from "./C_LogInPage";
 export { default as AddaProduct } from "./E_AddaProduct";
 export { default as ResultsPage } from "./ResultsPage";
 export { default as ProfilePage } from "./ProfilePage";
+export { default as ProductPage } from "./ProductPage";
