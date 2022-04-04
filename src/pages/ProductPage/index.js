@@ -1,13 +1,16 @@
 import React from "react";
-import { RateProduct } from "../../components";
+import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
 
 import "./style.css";
 
 const ProductPage = () => {
+    const loading = false;
+
     return (
         <>
         <Header />
+        {loading ? <Spinner /> : 
         <main className="productpage">
             <section>
                 <div id="productImage" style={{backgroundImage: `url('http://placehold.jp/396x396.png')`}}></div>
@@ -22,9 +25,10 @@ const ProductPage = () => {
                     </div>
                     <span id="productDistance">1 mile away</span>
                 </div>
-                <div id="map" style={{backgroundImage: `url('http://placehold.jp/396x396.png')`}}></div>
+                <Map />
             </section>
         </main>
+        }
         <NavBar />
         </>
     );
