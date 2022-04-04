@@ -39,7 +39,7 @@ main.productpage {
     text-align: center;
 }
 
-#productImage, #map {
+#productImage {
     width: 100%;
     height: calc(100vw * .95);
     max-height: 620px;
