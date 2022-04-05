@@ -44,6 +44,10 @@ hr {
   justify-content: space-between;
 }
 
+.space-around {
+  justify-content: space-around;
+}
+
 .margin-b {
   margin-bottom: 18px;
 }

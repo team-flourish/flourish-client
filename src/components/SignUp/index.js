@@ -28,8 +28,8 @@ const SignUpForm = () => {
         onSubmit={handleSubmit}
         aria-label="register"  
       >
-        <div>
-          <h3 className= "sign-up-in-field-title">Name</h3>
+        <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
@@ -37,23 +37,25 @@ const SignUpForm = () => {
             // onChange={handleInput}
             placeholder=""
             required
+            id="name" 
             className="input-sign-in-up"
           />
         </div>
-        <div>
-          <h3 className= "sign-up-in-field-title">Email</h3>
+        <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             // value={formData.password}
             // onChange={handleInput}
             placeholder=""
-            required
+            required 
+            id="email" 
             className="input-sign-in-up"
           />
         </div>
-        <div>
-          <h3 className= "sign-up-in-field-title">Create password</h3>
+        <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="password">Create password</label>
           <input
             type="password"
             name="password"
@@ -61,11 +63,12 @@ const SignUpForm = () => {
             // onChange={handleInput}
             placeholder=""
             required
+            id="password" 
             className="input-sign-in-up"
           />
         </div>
-        <div>
-          <h3 className= "sign-up-in-field-title">Re-enter password</h3>
+        <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="confirmPassword">Re-enter password</label>
           <input
             type="password"
             name="confirmPassword"
@@ -73,6 +76,7 @@ const SignUpForm = () => {
             // onChange={handleInput}
             placeholder=""
             required
+            id="confirmPassword" 
             className="input-sign-in-up"
           />
         </div>

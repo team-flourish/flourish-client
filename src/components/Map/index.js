@@ -11,11 +11,11 @@ const Map = ({ center, marker, onMapClick }) => {
     };
 
     return (
-        <div id="map" style={{backgroundImage: `url('http://placehold.jp/396x396.png')`}}>
+        <div id="map">
             <GoogleMapReact
             bootstrapURLKeys={{key: "AIzaSyAUdg_BN8ypemI1syHUMWMgHbq3aLBmeVw"}} 
             defaultCenter={defaultCenter} 
-            center={center || marker} 
+            center={center} 
             defaultZoom={14}
             onClick={onMapClick || new Function()}
             >

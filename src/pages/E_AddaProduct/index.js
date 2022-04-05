@@ -1,12 +1,15 @@
 import React from "react";
 import { AddProduct } from '../../components'
-
-
+import { Header, NavBar } from "../../layout";
 
 const AddaProduct = () => {
     return (
     <>
-      <AddProduct/>     
+      <Header />
+      <main>
+        <AddProduct/>
+      </main>
+      <NavBar />
     </>
     );
 }

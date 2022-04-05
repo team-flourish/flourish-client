@@ -6,6 +6,7 @@ footer {
     background-color: #3D7E60;
     height: 80px;
     width: 100%;
+    z-index: 100;
 }
 
 nav {

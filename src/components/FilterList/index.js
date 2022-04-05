@@ -14,7 +14,7 @@ const FilterList = () => {
 
     return (
         <>
-        <h2 className="muted">Filter by food type</h2>
+        <h2 className="muted filterListTitle">Filter by food type</h2>
         <div id="filterList">
             {categories.map(category => (
                 <div 
