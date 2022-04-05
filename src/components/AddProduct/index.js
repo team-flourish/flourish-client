@@ -1,182 +1,193 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import Select from 'react-select'
+import CreatableSelect from "react-select/creatable";
 // import { useNavigate } from "react-router-dom";
-
-
 import './style.css'
 import '../style.css'
 
-const handleSubmit = () => {
-    alert(`New Product clicked! - {selectedOption}`);
-  }
-
-  const options = [
-    { value: 'bakery', label: 'Bakery' },
-    { value: 'diary', label: 'Diary' },
-    { value: 'eggs', label: 'Eggs' },
-    { value: 'fish', label: 'Fish' },
-    { value: 'fruit', label: 'Fruit' },
-    { value: 'meat', label: 'Meat' },
-    { value: 'vegetables', label: 'Vegetables' },
-    { value: 'other', label: 'Other' },
-  ]
-  
-  const MyComponent = () => (
-    <Select options={options} />
-  )
-
-  const data = options;
-
-  const groupStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  };
-  const styles = {
-    backgroundColor: '#EBECF0',
-    borderRadius: '2em',
-    color: '#172B4D',
-    display: 'inline-block',
-    fontSize: 12,
-    fontWeight: 'normal',
-    lineHeight: '1',
-    minWidth: 1,
-    padding: '0.16666666666667em 0.5em',
-    textAlign: 'center',
-  };
-  
-  const formatGroupLabel = () => (
-    <div style={groupStyles}>
-      <span>{data.label}</span>
-      <span style={styles}>{data.options.length}</span>
-    </div>
-  );
-  
-
-
-  const MyComponent2 = () => (
-   <div style = {{width: '252px'}}>
-    <Select
-      defaultValue={data[1].label}
-      options={data}
-      formatGroupLabel={formatGroupLabel}
-    />
-    </div>
-  );
-
-  // const MyComponent3 = () => (
-  //   <div style = {{width: '252px'}}>
-  //    <Select
-  //      onChange={handleChange}
-  //      options={options}
-  //    />
-  //    </div>
-  //  );
-
-
-//   <div className="App">
-//   <Select
-//     defaultValue={selectedOption}
-//     onChange={handleChange}
-//     options={options}
-//   />
-// </div>
-
+import { categories, products } from './data.js';
 
 
 const AddProduct = () => {
 
-const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [checked, setChecked] = useState([false, false]);
+  const [geoLoc, setGeoLoc] = useState("");
+  const [price, setPrice] = useState("");
 
+  // const [error, setError] = useState();
+  // const [loading, setLoading] = useState(false);
 
-const handleChange = (selectedOption) => { 
-  setSelectedOption();
-  let data = selectedOption
-  console.log( data);
-}
-
-useEffect(() => handleChange())
-
-
-const MyComponent3 = () => (
-  <div style = {{width: '252px'}}>
-   <Select
-     defaultValue={options[0]}
-     isClearable
-     onChange={handleChange}
-     options={options}
-   />
-   </div>
- );
-
-    return (
-    <>
-     
-     {/* <MyComponent />
-     <MyComponent2 /> */}
-     
   
-      <form
-        id="add-a-product"
-        className="make-me-flex-2"
-        onSubmit={handleSubmit}
-        aria-label="add-a-product"  
-      >
-        <div>
-          <h3 className= "sign-up-in-field-title">Category</h3>
-          <MyComponent3 />
+  const AddCategory = () => (
+    <div style = {{width: '252px'}}>
+      <Select
+        defaultValue={selectedCategory}
+        isClearable
+        onChange={handleSelectedCategory} 
+        options={categories}
+      />
+    </div>
+  );
+
+  const handleSelectedCategory = (newValue) => {
+    setSelectedCategory(newValue)
+    console.log('newValue', newValue)
+    console.log('selectedCategory', selectedCategory)
+  }
+
+
+  useEffect(() => {setSelectedProduct(selectedProduct)
+    console.log('selectedCategory after useEffect', selectedCategory)
+  }, [selectedCategory])
+
+  const AddProduct = ({options}) => (
+    <div style = {{width: '252px'}}>
+      <CreatableSelect
+        defaultValue={selectedProduct}
+        isClearable
+        onChange={handleSelectedProduct}  
+        options={options}
+      />
+    </div>
+  )
+  
+  const handleSelectedProduct = (newValue) => {
+    setSelectedProduct(newValue)
+    console.log('newValue', newValue)
+    console.log('selectedProduct', selectedProduct)
+  }
+
+  useEffect(() => {setSelectedProduct(selectedProduct) // force update in this render
+    console.log('selectedProduct after useEffect', selectedProduct)}, [selectedProduct])
+  
+  const handleCheckBoxChange = (position) => {
+    const updatedCheckedState = [0,1].map((item, index) =>
+      index === position ? true : false
+    );
+    setChecked( () => updatedCheckedState);
+    console.log(checked)
+  }
+
+  useEffect(() => {setChecked(checked) // force update in this render
+    console.log('checked after useEffect', checked)}, [checked])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newProduct = {
+    category: selectedCategory,
+    product: selectedProduct,
+    retail: checked[0],
+    geoloc: geoLoc,
+    price: price
+    }
+    console.log(`New Product added:`, newProduct);
+  }
+
+return (
+  <>
+    <div style = {{margin: '50px'}}> </div> 
+    <h2 className='add-product-title' style={{margin: '10px'}}>Add a product</h2>
+    <form
+      id="add-a-product"
+      className="make-me-flex-2"
+      onSubmit={handleSubmit}
+      aria-label="add-a-product"
+      style={{marginTop: '0px'}}
+    >
+      <div>
+        <h3 className= "sign-up-in-field-title">Category</h3>
+        <AddCategory />
+      </div>
+
+      <div>
+        <h3 className= "sign-up-in-field-title" >Product name</h3>
+        <AddProduct options = {selectedCategory? products[selectedCategory.value] : null} />
+        <h3 className= "sign-up-in-field-title" style={{fontSize: '12px', margin: 0, marginTop: '3px'}}>Choose or type to create</h3>
+      </div>
+
+      <div>
+        <h3 className= "sign-up-in-field-title">Food origin</h3>
+        <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '252px'}}>
+          <div>
+            <input
+              type="checkbox"
+              id = "check-box-0"
+              name = "retail"
+              value = "retail"
+              checked={checked[0]}
+              onChange={() => handleCheckBoxChange(0)}
+            />
+            <label htmlFor='check-box-retail'> Retail </label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id = "check-box-1"
+              name = "household"
+              value = "household"
+              checked={checked[1]}
+              onChange={() => handleCheckBoxChange(1)}
+            />
+            <label htmlFor='check-box-household'> Household </label>
+          </div>
         </div>
-          <div>
-            <h3 className= "sign-up-in-field-title">Product name</h3>
-            <input
-              type="email"
-              name="email"
-              // value={formData.password}
-              // onChange={handleInput}
-              placeholder=""
-              required
-              className="input-sign-in-up"
-            />
-          </div>
-          <div>
-            <h3 className= "sign-up-in-field-title">Postcode?</h3>
-            <input
-              type="password"
-              name="password"
-              // value={formData.password}
-              // onChange={handleInput}
-              placeholder=""
-              required
-              className="input-sign-in-up"
-            />
-          </div>
-          <div>
-            <h3 className= "sign-up-in-field-title">Upload a picture</h3>
-            <input
-              type="password"
-              name="confirmPassword"
-              // value={formData.password}
-              // onChange={handleInput}
-              placeholder=""
-              required
-              className="input-sign-in-up"
-            />
-          </div>
+      </div>
+
+      <div>
+        <h3 className= "sign-up-in-field-title">Location</h3>
         <input
+          type="text"
+          name="text"
+          value={geoLoc}
+          onChange={e => {setGeoLoc(e.target.value), console.log(geoLoc)}}
+          placeholder=""
+          required
+          className="input-sign-in-up"
+        />
+      </div>
+
+      <div>
+        <h3 className= "sign-up-in-field-title">Price (£)</h3>
+          <input
+            type="number"
+            name="price"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+            placeholder="£0.50"
+            required
+            className="input-sign-in-up"
+          />
+      </div>
+
+      <div>
+        <h3 className= "sign-up-in-field-title">Upload a picture</h3>
+          <input
+            type="file"
+            name="file"
+            // value={}
+            // onChange={handleInput}
+            placeholder="Img"
+            required
+          />
+      </div>
+
+      <input
           type="submit"
           className="submit-button"
           value="Submit"
         />
-      </form>
+    </form>
       {/* {error && (
-        <div className="pb-4 text-center" id="error">
+        <p style={{textAlign: center}} id="error">
           {error}
-        </div>
+        </p>
       )}
       {loading && (
-        <div className="pb-4 text-center" id="loading">
-          Logging in . . .
-        </div>
+        <p style={{textAlign: center}} id="loading">
+          Loading . . .
+        </p>
       )} */}
     </>
   );
