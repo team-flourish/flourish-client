@@ -21,6 +21,11 @@ input.submit-button{
     margin-top: 13vh;
 }
 
+h2.add-product-title{
+    text-align: center;
+    font-size: 35px;
+}
+
 @media screen and (max-height: 700px) {
     #form-registration{
         margin-top: 1vh;
@@ -29,5 +34,9 @@ input.submit-button{
     input.submit-button{
         min-height: 40px;
         margin-top: 5vh;
+    }
+
+    h2.add-product-title{
+        font-size: 30px;
     }
 }
