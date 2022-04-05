@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import CreatableSelect from "react-select/creatable";
 import { useNavigate } from "react-router-dom";
+import postcodes from "node-postcodes.io";
 import './style.css'
 import '../style.css'
 
-import { ImageSelector, Map } from '..';
+import { ImageSelector, Map, Spinner } from '..';
 import { categories, products } from './data.js';
 
 const AddProduct = () => {
@@ -17,6 +18,7 @@ const AddProduct = () => {
     const [expiry, setExpiry] = useState((new Date()).toISOString().slice(0, 10));
     const [location, setLocation] = useState(null);
     const [mapCenter, setMapCenter] = useState(null);
+    const [postcode, setPostcode] = useState("");
 
     const [loading, setLoading] = useState(false);
     const navigateTo = useNavigate();
@@ -30,11 +32,29 @@ const AddProduct = () => {
         }, console.log);
     }, []);
 
+    useEffect(() => {
+        if(!postcode) return;
+        const t = setTimeout(async () => {
+            setLoading(true);
+            const response = await postcodes.lookup(postcode);
+            if(response.status === 200){
+                setMapCenter({
+                    lat: response.result.latitude,
+                    lng: response.result.longitude
+                });
+            }
+            setLoading(false);
+        }, 600);
+        return () => clearTimeout(t);
+    }, [postcode]);
+
     const handleCheckBoxChange = (e) => {
         setIsRetail(e.target.value === "retail");
     }
 
-    const handleLocationSearch = new Function();
+    const handleLocationSearch = (e) => {
+        setPostcode(e.target.value);
+    };
 
     const handleMapClick = (val) => {
         setLocation({ lat: val.lat, lng: val.lng })
@@ -93,6 +113,8 @@ const AddProduct = () => {
     }
 
     return (
+        <>
+        {loading && <Spinner />}
         <form
             id="add-a-product"
             className="make-me-flex-2"
@@ -185,14 +207,16 @@ const AddProduct = () => {
                     id="location"
                     className="input-sign-in-up margin-b"
                     type="text"
-                    onChange={handleLocationSearch}
-                    placeholder="jump to postcode..."
+                    value={postcode}
+                    onChange={(e) => {setPostcode(e.target.value)}}
+                    placeholder="Jump to postcode..."
                 />
                 <Map center={mapCenter} marker={location} onMapClick={handleMapClick}/>
             </div>
 
             <input type="submit" value="Submit" />
         </form>
+        </>
     );
 };
 
