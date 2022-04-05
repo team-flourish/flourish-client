@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff9;
+    z-index: 99;
 }
 
 .spinner, .path {
