@@ -15,3 +15,12 @@
 .ratingStars {
     text-align: center;
 }
+
+.ratingStars > img {
+    height: 22px;
+    filter: saturate(0) brightness(.7);
+}
+
+.ratingStars > img.lit {
+    filter: initial;
+}
