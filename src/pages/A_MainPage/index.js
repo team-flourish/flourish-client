@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Brand } from '../../components'
 import './style.css'
 
@@ -26,6 +25,7 @@ const MainPage = () => {
 
     return (
     <>
+    
  
         <div className="bg-img">  
            <Brand/>
