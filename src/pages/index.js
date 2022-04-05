@@ -5,3 +5,4 @@ export { default as AddaProduct } from "./E_AddaProduct";
 export { default as ResultsPage } from "./ResultsPage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as ProductPage } from "./ProductPage";
+export { default as UserSettings } from "./Z_UserPage";
