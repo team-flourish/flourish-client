@@ -5,8 +5,8 @@
     right: 0;
     text-align: center;
     margin-top: 5vh;
+    padding-bottom: 105px;
 }
-
 
 input.submit-button{
     position: relative;
@@ -18,12 +18,18 @@ input.submit-button{
     font-weight: 500;
     color: azure;
     border-radius: 12px;
-    margin-top: 13vh;
+    margin-top: .67em;
 }
 
 h2.add-product-title{
     text-align: center;
     font-size: 35px;
+}
+
+[type=date], [type=number] {
+    font-size: 22px;
+    width: 100%;
+    padding: 9px;
 }
 
 @media screen and (max-height: 700px) {

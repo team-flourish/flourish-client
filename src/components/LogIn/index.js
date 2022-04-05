@@ -28,8 +28,8 @@ const LogInForm = () => {
         onSubmit={handleSubmit}
         aria-label="login-aria"  
       >
-         <div>
-          <h3 className= "sign-up-in-field-title">Email</h3>
+         <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
@@ -37,11 +37,12 @@ const LogInForm = () => {
             // onChange={handleInput}
             placeholder=""
             required
+            id="email" 
             className="input-sign-in-up"
           />
         </div>
-        <div>
-          <h3 className= "sign-up-in-field-title">Password</h3>
+        <div className="form-control">
+          <label className= "sign-up-in-field-title" htmlFor="email">Password</label>
           <input
             type="password"
             name="password"
@@ -49,6 +50,7 @@ const LogInForm = () => {
             // onChange={handleInput}
             placeholder=""
             required
+            id="password" 
             className="input-sign-in-up"
           />
         </div>
