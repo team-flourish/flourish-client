@@ -14,7 +14,8 @@ const Map = ({ center, marker, onMapClick }) => {
         <div id="map" style={{backgroundImage: `url('http://placehold.jp/396x396.png')`}}>
             <GoogleMapReact
             bootstrapURLKeys={{key: "AIzaSyAUdg_BN8ypemI1syHUMWMgHbq3aLBmeVw"}} 
-            defaultCenter={center || marker || defaultCenter} 
+            defaultCenter={defaultCenter} 
+            center={center || marker} 
             defaultZoom={14}
             onClick={onMapClick || new Function()}
             >
