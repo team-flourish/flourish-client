@@ -7,7 +7,7 @@ import './style.css'
 import '../style.css'
 
 import { ImageSelector, Map, Spinner } from '..';
-import { categories, products } from './data.js';
+import { categories, products } from '../../data.js';
 
 const AddProduct = () => {
     const [file, setFile] = useState(null);

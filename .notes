@@ -1,5 +1,5 @@
 connect client to server:
-- setup categories
+- get categories from server instead of from file
 - signups and logins
   - show main page if not logged in
   - show products page if logged in
