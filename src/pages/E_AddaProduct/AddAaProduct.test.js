@@ -18,14 +18,14 @@ const mockGeolocation = {
 
 describe('Log In Page', () => {
 
-    test('it renders with Heading "FLOURISH"', async () => {
+    xtest('it renders with Heading "FLOURISH"', async () => {
         //jest.spyOn(React, "useEffect").mockImplementation(() => {});
         await act( async  () => {  render(<AddaProduct />, {wrapper: MemoryRouter}) });
         const heading = screen.getAllByRole('heading')[0];
         expect(heading.textContent).toMatch(/FLOURISH/i);
     });  
 
-    test('it renders with title "Add a Product"', async () => {
+    xtest('it renders with title "Add a Product"', async () => {
         //jest.spyOn(React, "useEffect").mockImplementation(() => {});
         await act( async  () => {  render(<AddaProduct />, {wrapper: MemoryRouter}) });
         const heading = screen.getAllByRole('heading')[1];

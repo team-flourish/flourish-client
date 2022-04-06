@@ -8,19 +8,19 @@ import { useState } from 'react';
 
 describe('Sign Up Page', () => {
 
-    test('it renders with title "FLOURISH"', () => {
+    xtest('it renders with title "FLOURISH"', () => {
         render(<SignUpPage />, {wrapper: MemoryRouter})
         const heading = screen.getByRole('heading');
         expect(heading.textContent).toMatch(/FLOURISH/i);
     });  
 
-    test('it renders a form', () => {
+    xtest('it renders a form', () => {
         render(<SignUpPage />, {wrapper: MemoryRouter})
         const form = screen.queryByRole('form');
         expect(form).toBeInTheDocument;
     }); 
 
-    test('it calls a handleSubmit for Sign up', async () => {
+    xtest('it calls a handleSubmit for Sign up', async () => {
 
         let buttonClicked = false;
     
@@ -40,7 +40,7 @@ describe('Sign Up Page', () => {
       
       });
 
-      test('it calls useState for Sign up', async () => {
+      xtest('it calls useState for Sign up', async () => {
 
         let buttonClicked = false;
 

@@ -7,19 +7,19 @@ import { act } from 'react-dom/test-utils';
 
 describe('Log In Page', () => {
 
-    test('it renders with title "FLOURISH"', () => {
+    xtest('it renders with title "FLOURISH"', () => {
         render(<LogInPage />, {wrapper: MemoryRouter})
         const heading = screen.getByRole('heading');
         expect(heading.textContent).toMatch(/FLOURISH/i);
     });  
 
-    test('it renders a form', () => {
+    xtest('it renders a form', () => {
         render(<LogInPage />, {wrapper: MemoryRouter})
         const form = screen.queryByRole('form');
         expect(form).toBeInTheDocument;
     }); 
 
-    test('it calls a handleSubmit for Sign up', async () => {
+    xtest('it calls a handleSubmit for Sign up', async () => {
 
         let buttonClicked = false;
     

@@ -27,7 +27,7 @@ describe("test multiple state in component", () => {
      
   });
 
-  it("should test useState was called", async () => {
+  xtest("should test useState was called", async () => {
 
     let buttonClicked = false;
 

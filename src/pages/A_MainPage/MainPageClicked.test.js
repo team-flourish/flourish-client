@@ -22,7 +22,7 @@ jest.mock('react-router-dom', () => {
 });
 
 
-test('it calls a handleSubmit for Log in', async () => {
+xtest('it calls a handleSubmit for Log in', async () => {
 
     let buttonClicked = false;
 
@@ -42,7 +42,7 @@ test('it calls a handleSubmit for Log in', async () => {
   
   });
 
-  test('it calls a handleSubmit for Sign up', async () => {
+  xtest('it calls a handleSubmit for Sign up', async () => {
 
     let buttonClicked = false;
 

@@ -1,35 +1,36 @@
-import React from 'react'
-// import '@testing-library/jest-dom';
+import React from 'react';
 
-// import { render } from '@testing-library/react';
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import thunk from 'redux-thunk';
+import '@testing-library/jest-dom';
+import { MemoryRouter } from "react-router-dom";
+import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-// import searchReducer from '../reducers/searchReducer'
+import { reducer } from "../reducers";
 
-// const TestProviders = ({ initState }) => {
-//     initState ||= { location: "", result: { sunrise: "", sunset: "" }, loading: false };
-//     let testReducer = () => searchReducer(initState, { type: '@@INIT' })
-//     const testStore = createStore(testReducer, applyMiddleware(thunk))
+const TestProviders = ({ initState }) => {
+    initState ||= { loading: false,
+                    isLoggedIn: false, 
+                    token: null, 
+                    error: null }
+    const testStore = createStore(() => reducer(initState, { type: '@@INIT' }), applyMiddleware(thunk))
 
-//     return ({ children }) => (
-//         <Provider store={testStore}>
-//             { children }
-//         </Provider>
-//     )
-// }
+    return ({ children }) => (
+            <MemoryRouter>
+              <Provider store={testStore}>{children}</Provider>
+            </MemoryRouter>
+      );
+}
 
-// const renderWithReduxProvider = (ui, options={}) => {
-//     let TestWrapper = TestProviders(options)
-//     render(ui, { wrapper: TestWrapper, ...options })
-// }
+const renderWithProviders = (ui, options={}) => {
+    let TestWrapper = TestProviders(options)
+    render(ui, { wrapper: TestWrapper, ...options })
+}
 
-// import axios from 'axios';
-// jest.mock('axios')
-// axios.get.mockResolvedValue({ data: [ { latlng: [123, 456] }]})
 
-// global.renderWithReduxProvider = renderWithReduxProvider
+
+global.renderWithProviders = renderWithProviders
 global.React = React;
 
 
