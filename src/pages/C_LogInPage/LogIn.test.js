@@ -1,6 +1,5 @@
 import { default as LogInPage } from '.';
-import { screen, render } from '@testing-library/react';
-import {MemoryRouter} from 'react-router-dom'
+import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 
@@ -8,13 +7,13 @@ import { act } from 'react-dom/test-utils';
 describe('Log In Page', () => {
 
     test('it renders with title "FLOURISH"', () => {
-        render(<LogInPage />, {wrapper: MemoryRouter})
+        renderWithProviders(<LogInPage />)
         const heading = screen.getByRole('heading');
         expect(heading.textContent).toMatch(/FLOURISH/i);
     });  
 
     test('it renders a form', () => {
-        render(<LogInPage />, {wrapper: MemoryRouter})
+        renderWithProviders(<LogInPage />)
         const form = screen.queryByRole('form');
         expect(form).toBeInTheDocument;
     }); 
@@ -24,7 +23,7 @@ describe('Log In Page', () => {
         let buttonClicked = false;
     
         // Render page
-        act( () => {  render(<LogInPage />, {wrapper: MemoryRouter}) });
+        act( () => {  renderWithProviders(<LogInPage />)});
     
         // Save the button element to variable
         const loginbutton = screen.queryByRole('button', {name: /log in/i});
