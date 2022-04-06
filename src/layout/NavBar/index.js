@@ -12,9 +12,9 @@ const NavBar = () => {
         <footer>
             <nav>
                 <Link to="/products"><img src={HomeIcon}/></Link>
-                <Link to="map"><img src={MapIcon}/></Link>
+                <Link to="/map"><img src={MapIcon}/></Link>
                 <Link to="/new"><img src={AddIcon}/></Link>
-                <Link to="/profile"><img src={UserIcon}/></Link>
+                <Link to="/settings"><img src={UserIcon}/></Link>
             </nav>
         </footer>
     );

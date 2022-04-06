@@ -8,7 +8,7 @@ const ImageSelector = ({ onChange, value }) => {
 
     const handleChange = (e) => {
         setFile(e.target.files[0] || null);
-        onChange && onChange(file);
+        onChange && onChange(e.target.files[0]);
     };
 
     useEffect(() => {
