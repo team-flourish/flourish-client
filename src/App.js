@@ -5,6 +5,7 @@ import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage,
 import ProfilePage from './pages/ProfilePage';
 
 function App() {
+    window.API_HOST = "http://localhost:5000";
     return (
         <React.StrictMode>
             <BrowserRouter>

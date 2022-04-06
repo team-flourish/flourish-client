@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import CreatableSelect from "react-select/creatable";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import postcodes from "node-postcodes.io";
 import './style.css'
 import '../style.css'
 
-import Map from '../Map';
-import { categories, products } from './data.js';
+import { ImageSelector, Map, Spinner } from '..';
+import { categories, products } from '../../data.js';
 
 const AddProduct = () => {
+    const [file, setFile] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isRetail, setIsRetail] = useState(true);
-    const [mapCenter, setMapCenter] = useState(null);
-    const [location, setLocation] = useState(null);
     const [price, setPrice] = useState("");
     const [expiry, setExpiry] = useState((new Date()).toISOString().slice(0, 10));
+    const [location, setLocation] = useState(null);
+    const [mapCenter, setMapCenter] = useState(null);
+    const [postcode, setPostcode] = useState("");
+
+    const [loading, setLoading] = useState(false);
+    const navigateTo = useNavigate();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(location => {
@@ -26,29 +32,89 @@ const AddProduct = () => {
         }, console.log);
     }, []);
 
+    useEffect(() => {
+        if(!postcode) return;
+        const t = setTimeout(async () => {
+            setLoading(true);
+            const response = await postcodes.lookup(postcode);
+            if(response.status === 200){
+                setMapCenter({
+                    lat: response.result.latitude,
+                    lng: response.result.longitude
+                });
+            }
+            setLoading(false);
+        }, 600);
+        return () => clearTimeout(t);
+    }, [postcode]);
+
     const handleCheckBoxChange = (e) => {
         setIsRetail(e.target.value === "retail");
     }
 
-    const handleLocationSearch = new Function();
+    const handleLocationSearch = (e) => {
+        setPostcode(e.target.value);
+    };
 
     const handleMapClick = (val) => {
         setLocation({ lat: val.lat, lng: val.lng })
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const newProduct = {
-            category: selectedCategory,
-            product: selectedProduct,
-            retail: isRetail,
-            location: location,
-            price: price
+
+        setLoading(true);
+
+        let isValid = file && selectedCategory && selectedProduct && location;
+
+        if(isRetail) isValid &&= price; else isValid &&= expiry;
+
+        if(isValid){
+            // send cloudinary
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "hbcyezps");
+            const cldResponse = await fetch(`https://api.cloudinary.com/v1_1/flourish-app-cloud/image/upload`, {
+                method: "POST",
+                body: formData
+            });
+            if(cldResponse.status === 200){
+                const data = await cldResponse.text();
+                const productData = {
+                    user_id: null, //to-do
+                    description: selectedProduct.label,
+                    category_id: null, //to-do
+                    is_retail: isRetail,
+                    latitude: location.lat,
+                    longitude: location.lng,
+                    price: isRetail ? parseFloat(price) : null,
+                    expiry: isRetail ? null : expiry,
+                    image: data.secure_url
+                };
+                const apiResponse = await fetch(`<deploy-link>/products`, {
+                    method: "POST",
+                    body: productData
+                });
+                if(apiResponse.status === 201){
+                    // go to products page
+                    navigateTo("/products");
+                } else {
+                    // api error
+                    console.log("api error");
+                }
+            } else {
+                // cloudinary error
+                console.log("cloudinary error");
+            }
+        } else {
+            // missing fields
+            console.log("missing fields");
         }
-        console.log(`New Product added:`, newProduct);
     }
 
     return (
+        <>
+        {loading && <Spinner />}
         <form
             id="add-a-product"
             className="make-me-flex-2"
@@ -59,11 +125,7 @@ const AddProduct = () => {
 
             <div className="form-control">
                 <label className="sign-up-in-field-title">Upload a picture</label>
-                <input
-                    type="file"
-                    name="file"
-                    placeholder="Img"
-                />
+                <ImageSelector onChange={setFile} value={file} />
             </div>
 
             <div className="form-control">
@@ -100,7 +162,6 @@ const AddProduct = () => {
                         <input
                             type="checkbox"
                             id="retail-checkbox"
-                            name="retail"
                             value="retail"
                             checked={isRetail}
                             onChange={handleCheckBoxChange}
@@ -111,7 +172,6 @@ const AddProduct = () => {
                         <input
                             type="checkbox"
                             id="household-checkbox"
-                            name="household"
                             value="household"
                             checked={!isRetail}
                             onChange={handleCheckBoxChange}
@@ -147,18 +207,16 @@ const AddProduct = () => {
                     id="location"
                     className="input-sign-in-up margin-b"
                     type="text"
-                    onChange={handleLocationSearch}
-                    placeholder="jump to postcode..."
+                    value={postcode}
+                    onChange={(e) => {setPostcode(e.target.value)}}
+                    placeholder="Jump to postcode..."
                 />
                 <Map center={mapCenter} marker={location} onMapClick={handleMapClick}/>
             </div>
 
-            <input
-                type="submit"
-                className="submit-button"
-                value="Submit"
-            />
+            <input type="submit" value="Submit" />
         </form>
+        </>
     );
 };
 

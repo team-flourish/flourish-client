@@ -1,12 +1,12 @@
 const categories = [
-    { value: 'bakery', label: 'Bakery' },
-    { value: 'dairy', label: 'Dairy' },
-    { value: 'eggs', label: 'Eggs' },
-    { value: 'fish', label: 'Fish' },
-    { value: 'fruit', label: 'Fruit' },
-    { value: 'meat', label: 'Meat' },
-    { value: 'vegetables', label: 'Vegetables' },
-    { value: 'other', label: 'Other' },
+    { value: 'bakery', label: 'Bakery', color: "#E3914A" },
+    { value: 'dairy', label: 'Dairy', color: "#CBBC95" },
+    { value: 'eggs', label: 'Eggs', color: "#FFBC0F" },
+    { value: 'fish', label: 'Fish', color: "#2AD0D0" },
+    { value: 'fruit', label: 'Fruit', color: "#D02A66" },
+    { value: 'meat', label: 'Meat', color: "#FF3E3E" },
+    { value: 'vegetables', label: 'Vegetables', color: "#37D02A" },
+    { value: 'other', label: 'Other', color: "#808080" },
   ]
 
 const products = {    
