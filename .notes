@@ -1,17 +1,8 @@
 connect client to server:
 - user profiles
-  - url params user/:user_id
-  - fetch user data by id
-  - fetch products by user
-  - links to products
   - show location on profiles
 - product page
-  - url params product/:product_id
-  - fetch product data by id
   - rating post request
-  - link to user page
-  - map
-  - add time (x minutes ago)
   - can delete listing if listed by self
 - account page
   - log out button

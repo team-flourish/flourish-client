@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
@@ -85,7 +85,7 @@ const ProductPage = () => {
                 <div id="productInfo">
                     <div className="flex-row space-between margin-b">
                         <RateProduct />
-                        <div id="productLister">{`Posted by: ${product.username} (${product.user_rating}⭐)`}</div>
+                        <div id="productLister">Posted by: <Link to={`/user/${product.user_id}`}>{product.username}</Link>{` (${product.user_rating}⭐)`}</div>
                     </div>
                     <div className="flex-row">
                         <h2>{product.description}</h2>
