@@ -41,7 +41,7 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
                         <div className="productImage" style={{backgroundImage: `url('${product.image}')`}}></div>
                         <div className="productInfo">
                             <div>
-                                <h2>{product.description}</h2>
+                                <h2><Link to={`/product/${product.product_id}`}>{product.description}</Link></h2>
                                 <div
                                 className="productCategory"
                                 style={{backgroundColor: cat.color}}
