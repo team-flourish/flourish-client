@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings } from "./pages";
 import ProfilePage from './pages/ProfilePage';
 
+import { useDispatch } from "react-redux";
+import { getLoginStatus } from "./actions";
+
 function App() {
     window.API_HOST = "http://localhost:5000";
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const access_token = window.localStorage.getItem('access_token');
+        access_token && dispatch(getLoginStatus(access_token));
+    }, []);
+
     return (
         <React.StrictMode>
             <BrowserRouter>
