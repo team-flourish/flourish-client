@@ -1,4 +1,4 @@
-const initState = { loading: false, isLoggedIn: false, token: null, error: null };
+const initState = { loading: false, isLoggedIn: false, token: null, user: null, error: null };
 
 const reducer = (state=initState, action) => {
     switch(action.type){
@@ -6,8 +6,16 @@ const reducer = (state=initState, action) => {
             return { ...state, loading: action.payload };
         case 'SET_TOKEN':
             return { ...state, token: action.payload };
+        case 'SET_USER':
+            return { ...state, user: action.payload };
         case 'SET_LOGIN':
-            return { ...state, isLoggedIn: action.payload, loading: false, error: null };
+            return {
+                ...state, 
+                isLoggedIn: action.payload, 
+                loading: false, 
+                error: null, 
+                user: action.payload ? state.user : null
+            };
         case 'SET_ERROR':
             return { ...state, error: action.payload, loading: false };
         default:

@@ -13,6 +13,11 @@ const setLoginStatus = (status) => ({
     payload: status
 });
 
+const setUser = (user) => ({
+    type: 'SET_USER',
+    payload: user
+});
+
 const setError = (error) => ({
     type: 'SET_ERROR',
     payload: error
@@ -32,9 +37,12 @@ const getLoginStatus = (access_token) => {
                     })
                 });
                 if(response.status === 200){
+                    const user = await response.json();
+                    dispatch(setUser(user));
                     dispatch(setToken(access_token));
                     dispatch(setLoginStatus(true));
                 } else {
+                    dispatch(setLoginStatus(false));
                     throw new Error("invalid token");
                 }
             } catch (err) {
