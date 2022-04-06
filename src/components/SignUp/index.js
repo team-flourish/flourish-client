@@ -16,6 +16,7 @@ const SignUpForm = () => {
         e.preventDefault();
         let isValid = !!(username && email && passwrd && confPass);
         isValid &&= (passwrd === confPass);
+        console.log(`1`,username,`2`, email,`3`, passwrd,`4`, confPass)
 
         if(isValid){
             const reqBody = { username, email, passwrd };
