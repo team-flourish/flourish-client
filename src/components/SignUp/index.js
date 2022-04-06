@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import './style.css'
 import '../style.css'
 
 const SignUpForm = () => {
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [passwrd, setPasswrd] = useState("");
@@ -38,6 +40,10 @@ const SignUpForm = () => {
             console.log("missing fields");
         }
     };
+
+    useEffect(() => {
+        isLoggedIn && navigateTo("/products");
+    }, [isLoggedIn]);
 
     return (
         <>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Brand } from '../../components'
 import './style.css'
 
@@ -8,6 +9,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 
 const MainPage = () => {
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   let navigate = useNavigate();
 
@@ -28,6 +30,10 @@ const MainPage = () => {
     navigate("./login");
     //console.log('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG----------------------------------')
   }
+
+  useEffect(() => {
+    isLoggedIn && navigate("/products");
+  }, [isLoggedIn]);
 
     return (
     <>

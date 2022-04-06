@@ -1,12 +1,12 @@
 const categories = [
-    { value: 'bakery', label: 'Bakery', color: "#E3914A" },
-    { value: 'dairy', label: 'Dairy', color: "#CBBC95" },
-    { value: 'eggs', label: 'Eggs', color: "#FFBC0F" },
-    { value: 'fish', label: 'Fish', color: "#2AD0D0" },
-    { value: 'fruit', label: 'Fruit', color: "#D02A66" },
-    { value: 'meat', label: 'Meat', color: "#FF3E3E" },
-    { value: 'vegetables', label: 'Vegetables', color: "#37D02A" },
-    { value: 'other', label: 'Other', color: "#808080" },
+    { category_id: 1, value: 'bakery', label: 'Bakery', category_name: 'Bakery', color: "#E3914A" },
+    { category_id: 2, value: 'dairy', label: 'Dairy', category_name: 'Dairy', color: "#CBBC95" },
+    { category_id: 3, value: 'eggs', label: 'Eggs', category_name: 'Eggs', color: "#FFBC0F" },
+    { category_id: 4, value: 'fish', label: 'Fish', category_name: 'Fish', color: "#2AD0D0" },
+    { category_id: 5, value: 'fruit', label: 'Fruit', category_name: 'Fruit', color: "#D02A66" },
+    { category_id: 6, value: 'meat', label: 'Meat', category_name: 'Meat', color: "#FF3E3E" },
+    { category_id: 7, value: 'vegetables', label: 'Vegetables', category_name: 'Vegetables', color: "#37D02A" },
+    { category_id: 8, value: 'other', label: 'Other', category_name: 'Other', color: "#808080" },
   ]
 
 const products = {    
