@@ -1,11 +1,7 @@
 connect client to server:
-- get categories from server instead of from file
-- signups and logins
-  - show main page if not logged in
-  - show products page if logged in
 - products page
-  - fetch products from server
-  - filter by location and time
+  - filter by location
+  - link username to profile
 - submit product
   - have form send actual request to server
 - user profiles
