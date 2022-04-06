@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { Header, NavBar } from "../../layout";
 import { FilterList, ProductList, Spinner } from "../../components";
-import { categories as categoriesFromFile } from "../../data";
 import './style.css';
 
 const ResultsPage = () => {
     const user = useSelector(state => state.user);
     const loading = useSelector(state => state.loading);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const [categories, setCategories] = useState(categoriesFromFile);
+    const [categories, setCategories] = useState(null);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const [position, setPosition] = useState(null);
 
-    const dispatch = useDispatch();
     const navigateTo = useNavigate();
 
     // get categories
@@ -25,8 +23,6 @@ const ResultsPage = () => {
         if(response.status === 200) {
             const data = await response.json();
             setCategories(data);
-        } else {
-            setCategories(categoriesFromFile);
         }
     }, []);
 

@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { categories as categoriesFromFile } from "../../data";
 import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
 const ProductList = ({ categoryData, productData, currentPosition }) => {
-    const position = currentPosition || {
+    categoryData ||= categoriesFromFile;
+    productData ||= [];
+    currentPosition ||= {
         lat: 51.517673199104046, 
         lng: -0.1276473535731588
     };
@@ -14,7 +17,7 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
         return {
             ...product,
             distance: haversine(
-                position, {
+                currentPosition, {
                     lat: product.latitude,
                     lng: product.longitude
                 }
@@ -29,7 +32,8 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
 
     return (
         <section id="productsList">
-            {sortedProducts.map((product) => {
+            {productData.length ? 
+            sortedProducts.map((product) => {
                 const age = msToTime(product.time) + " ago";
                 const cat = categoryData.find(c => c.category_id === product.category_id);
                 return (
@@ -49,7 +53,10 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
                         </div>
                     </div>
                 );
-            })}
+            })
+            :
+            <h2>No items to show.</h2>
+            }
         </section>
     );
 };
