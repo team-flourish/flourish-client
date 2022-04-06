@@ -1,0 +1,34 @@
+connect client to server:
+- get categories from server instead of from file
+- signups and logins
+  - show main page if not logged in
+  - show products page if logged in
+- products page
+  - fetch products from server
+  - filter by location and time
+- submit product
+  - have form send actual request to server
+- user profiles
+  - url params user/:user_id
+  - fetch user data by id
+  - fetch products by user
+  - links to products
+  - show location on profiles
+- product page
+  - url params product/:product_id
+  - fetch product data by id
+  - rating post request
+  - link to user page
+  - map
+  - add time (x minutes ago)
+  - can delete listing if listed by self
+- account page
+  - log out button
+  - link view details to personal account
+  - change location and radius
+  - delete account (?)
+- map page
+  - change map component to have multiple markers
+  - fetch products and display on map
+  - marker click event listener -> go to product page
+  - marker text

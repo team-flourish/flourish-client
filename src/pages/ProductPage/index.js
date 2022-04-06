@@ -26,7 +26,7 @@ const ProductPage = () => {
                     </div>
                     <span id="productDistance">1 mile away</span>
                 </div>
-                <Map marker={mapLocation} onMapClick={setMapLocation}/>
+                <Map center={mapLocation} marker={mapLocation} onMapClick={setMapLocation}/>
             </section>
         </main>
         }
