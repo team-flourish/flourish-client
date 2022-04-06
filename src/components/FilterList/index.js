@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
+import { categories as categoriesFromFile } from "../../data";
 import "./style.css";
 
 const FilterList = ({ onSelection, categoryData }) => {
     const [selected, setSelected] = useState([]);
+
+    categoryData ||= categoriesFromFile;
 
     const handleClick = (e) => {
         const value = parseInt(e.target.dataset.id);
