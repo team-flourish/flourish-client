@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import "./style.css";
 
@@ -33,7 +34,7 @@ const ProductList = ({ categoryData, productData }) => {
                                 style={{backgroundColor: cat.color}}
                                 >{cat.category_name}</div>
                             </div>
-                            <span className="productLister">by: {product.user_id} (5⭐)</span>
+                                <span className="productLister">by: <Link to={`/user/${product.user_id}`}>{product.username}</Link> ({product.user_rating}⭐)</span>
                             <span className="productDistance">1 mile away</span>
                             <span className="productTime">{age}</span>
                         </div>
