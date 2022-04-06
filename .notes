@@ -1,6 +1,4 @@
 connect client to server:
-- products page
-  - filter and sort by location
 - user profiles
   - url params user/:user_id
   - fetch user data by id

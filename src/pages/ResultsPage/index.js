@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Header, NavBar } from "../../layout";
-import { FilterList, ProductList } from "../../components";
+import { FilterList, ProductList, Spinner } from "../../components";
 import { categories as categoriesFromFile } from "../../data";
 import './style.css';
 
 const ResultsPage = () => {
+    const user = useSelector(state => state.user);
+    const loading = useSelector(state => state.loading);
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const [categories, setCategories] = useState(categoriesFromFile);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [position, setPosition] = useState(null);
 
+    const dispatch = useDispatch();
+    const navigateTo = useNavigate();
+
+    // get categories
     useEffect(async () => {
         const response = await fetch(`${API_HOST}/products/categories`);
         if(response.status === 200) {
@@ -20,6 +30,7 @@ const ResultsPage = () => {
         }
     }, []);
 
+    // get products
     useEffect(async () => {
         const response = await fetch(`${API_HOST}/products`);
         if(response.status === 200) {
@@ -30,6 +41,35 @@ const ResultsPage = () => {
         }
     }, []);
 
+    // get location
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(location => {
+            setPosition({
+                lat: location.coords.latitude,
+                lng: location.coords.longitude
+            });
+        }, () => {
+            if(user){
+                setPosition({
+                    lat: user.location.latitude,
+                    lng: user.location.longitude
+                });
+            } else {
+                setPosition({
+                    lat: 51.517673199104046, 
+                    lng: -0.1276473535731588
+                })
+            }
+        });
+    }, [user]);
+
+    // get login state
+    useEffect(() => {
+        if(isLoggedIn === false){
+            navigateTo("/");
+        }
+    }, [isLoggedIn]);
+
     const filteredProducts = selectedCategories.length ? products.filter(product => {
         return selectedCategories.includes(product.category_id);
     }) : products;
@@ -39,9 +79,17 @@ const ResultsPage = () => {
         <Header>
             <FilterList categoryData={categories} onSelection={setSelectedCategories} />
         </Header>
-        <main className="productspage">
-            <ProductList categoryData={categories} productData={filteredProducts} />
-        </main>
+        { loading ? 
+            <Spinner />
+        :
+            <main className="productspage">
+                <ProductList 
+                    categoryData={categories} 
+                    productData={filteredProducts} 
+                    currentPosition={position}
+                />
+            </main>
+        }
         <NavBar />
         </>
     );
