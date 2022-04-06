@@ -44,18 +44,19 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
                     lat: product.latitude,
                     lng: product.longitude
                 }
-            )
+            ),
+            time: Date.now() - (new Date(product.date_time).getTime())
         };
     });
 
     const sortedProducts = productData.sort((a, b) => {
-        return a.distance - b.distance;
+        return a.time - b.time;
     });
 
     return (
         <section id="productsList">
             {sortedProducts.map((product) => {
-                const age = msToTime(Date.now() - (new Date(product.date_time).getTime())) + " ago";
+                const age = msToTime(product.time) + " ago";
                 const cat = categoryData.find(c => c.category_id === product.category_id);
                 return (
                     <div key={product.product_id} className="productListItem">
