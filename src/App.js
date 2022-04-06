@@ -33,8 +33,8 @@ function App() {
                         <Route path="/login" element={<LogInPage />}/>
                         <Route path="/new" element={<AddaProduct />}/>
                         <Route path="/products" element={<ResultsPage />}/>
-                        <Route path="/user" element={<ProfilePage />}/>
-                        <Route path="/product" element={<ProductPage />}/>
+                        <Route path="/user/:id" element={<ProfilePage />}/>
+                        <Route path="/product/:id" element={<ProductPage />}/>
                         <Route path="/settings" element={<UserSettings />}/>
                     </Routes>
                 </Scrollbars>
