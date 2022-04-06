@@ -32,7 +32,7 @@ main.productpage {
     margin: 7px;
 }
 
-#productDistance {
+#productDistance, #productTime {
     font-weight: 600;
     font-size: 18px;
     display: block;
@@ -43,4 +43,7 @@ main.productpage {
     width: 100%;
     height: calc(100vw * .95);
     max-height: 620px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
