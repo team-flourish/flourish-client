@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import CreatableSelect from "react-select/creatable";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import postcodes from "node-postcodes.io";
 import './style.css'
 import '../style.css'
 
 import { ImageSelector, Map, Spinner } from '..';
 import { categories, products } from '../../data.js';
+import { setLoading } from '../../actions';
 
 const AddProduct = () => {
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const user = useSelector(state => state.user);
+    const loading = useSelector(state => state.loading);
     const [file, setFile] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -20,7 +25,7 @@ const AddProduct = () => {
     const [mapCenter, setMapCenter] = useState(null);
     const [postcode, setPostcode] = useState("");
 
-    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
     const navigateTo = useNavigate();
 
     useEffect(() => {
@@ -52,10 +57,6 @@ const AddProduct = () => {
         setIsRetail(e.target.value === "retail");
     }
 
-    const handleLocationSearch = (e) => {
-        setPostcode(e.target.value);
-    };
-
     const handleMapClick = (val) => {
         setLocation({ lat: val.lat, lng: val.lng })
     };
@@ -63,11 +64,14 @@ const AddProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        setLoading(true);
+        dispatch(setLoading(true));
 
         let isValid = file && selectedCategory && selectedProduct && location;
 
         if(isRetail) isValid &&= price; else isValid &&= expiry;
+
+        console.log(file, selectedCategory, selectedProduct, location);
+        console.log(price, expiry);
 
         if(isValid){
             // send cloudinary
@@ -79,11 +83,11 @@ const AddProduct = () => {
                 body: formData
             });
             if(cldResponse.status === 200){
-                const data = await cldResponse.text();
+                const data = await cldResponse.json();
                 const productData = {
-                    user_id: null, //to-do
+                    user_id: user.id,
                     description: selectedProduct.label,
-                    category_id: null, //to-do
+                    category_id: selectedCategory.category_id,
                     is_retail: isRetail,
                     latitude: location.lat,
                     longitude: location.lng,
@@ -91,12 +95,16 @@ const AddProduct = () => {
                     expiry: isRetail ? null : expiry,
                     image: data.secure_url
                 };
-                const apiResponse = await fetch(`<deploy-link>/products`, {
+                const apiResponse = await fetch(`${API_HOST}/products`, {
                     method: "POST",
-                    body: productData
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(productData)
                 });
                 if(apiResponse.status === 201){
                     // go to products page
+                    dispatch(setLoading(false));
                     navigateTo("/products");
                 } else {
                     // api error
@@ -111,6 +119,12 @@ const AddProduct = () => {
             console.log("missing fields");
         }
     }
+
+    useEffect(() => {
+        if(isLoggedIn === false){
+            navigateTo("/");
+        }
+    }, [isLoggedIn]);
 
     return (
         <>
