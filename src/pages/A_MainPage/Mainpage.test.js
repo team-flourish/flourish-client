@@ -1,8 +1,5 @@
 import { default as MainPage } from '.';
 import { screen } from '@testing-library/react';
-// import {MemoryRouter} from 'react-router-dom'
-
-
 
 describe('MainPage', () => {
 

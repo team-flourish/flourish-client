@@ -1,11 +1,8 @@
 import { default as SignUpPage } from '.';
-import { screen, render } from '@testing-library/react';
-import {MemoryRouter} from 'react-router-dom'
+import { screen} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-// import { useState } from 'react';
 
-
-describe("test multiple state in component", () => {
+describe("test multiple states in component", () => {
     let setUsername;
     let setEmail;
     let setPasswrd;
@@ -31,7 +28,7 @@ describe("test multiple state in component", () => {
 
     let buttonClicked = false;
 
-    act( () => {  render(<SignUpPage />, {wrapper: MemoryRouter}) });
+    act( () => {  renderWithProviders(<SignUpPage />) });
 
     const signupbutton = screen.queryByRole('button', {name: /sign up/i});
 

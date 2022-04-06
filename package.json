@@ -16,7 +16,9 @@
     },
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/actions/"
+      "/actions/",
+      "/src/components/index.js",
+      "/src/layout/index.js"
     ]
   },
   "keywords": [],

@@ -1,30 +1,29 @@
 import { default as LogInPage } from '.';
-import { screen, render } from '@testing-library/react';
-import {MemoryRouter} from 'react-router-dom'
+import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 
 
 describe('Log In Page', () => {
 
-    xtest('it renders with title "FLOURISH"', () => {
-        render(<LogInPage />, {wrapper: MemoryRouter})
+    test('it renders with title "FLOURISH"', () => {
+        renderWithProviders(<LogInPage />)
         const heading = screen.getByRole('heading');
         expect(heading.textContent).toMatch(/FLOURISH/i);
     });  
 
-    xtest('it renders a form', () => {
-        render(<LogInPage />, {wrapper: MemoryRouter})
+    test('it renders a form', () => {
+        renderWithProviders(<LogInPage />)
         const form = screen.queryByRole('form');
         expect(form).toBeInTheDocument;
     }); 
 
-    xtest('it calls a handleSubmit for Sign up', async () => {
+    test('it calls a handleSubmit for Sign up', async () => {
 
         let buttonClicked = false;
     
         // Render page
-        act( () => {  render(<LogInPage />, {wrapper: MemoryRouter}) });
+        act( () => {  renderWithProviders(<LogInPage />)});
     
         // Save the button element to variable
         const loginbutton = screen.queryByRole('button', {name: /log in/i});
