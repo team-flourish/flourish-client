@@ -12,15 +12,21 @@ const MainPage = () => {
   let navigate = useNavigate();
 
   async function handleSubmitUp(event) {
+    //console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB----------------------------------')
     event.preventDefault();
-    await delay(400);
+    // await delay(400);
+    //console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC---------------------------------')
     navigate("./signup");
+    //console.log('DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD---------------------------------')
   }
 
   async function handleSubmitIn(event) {
+    //console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE----------------------------------')
     event.preventDefault();
-    await delay(400);
+    //console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF----------------------------------')
+    //await delay(400);
     navigate("./login");
+    //console.log('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG----------------------------------')
   }
 
     return (
