@@ -1,4 +1,4 @@
-const initState = { loading: false, isLoggedIn: false, token: null, user: null, error: null };
+const initState = { loading: false, isLoggedIn: null, token: null, user: null, error: null };
 
 const reducer = (state=initState, action) => {
     switch(action.type){

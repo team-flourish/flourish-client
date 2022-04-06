@@ -1,6 +1,6 @@
-const loading = () => ({
+const setLoading = (bool) => ({
     type: 'LOADING',
-    payload: true
+    payload: bool
 });
 
 const setToken = (token) => ({
@@ -25,7 +25,7 @@ const setError = (error) => ({
 
 const getLoginStatus = (access_token) => {
     return async dispatch => {
-        dispatch(loading());
+        dispatch(setLoading(true));
         if(!access_token){
             dispatch(setLoginStatus(false));
         } else {
@@ -53,4 +53,4 @@ const getLoginStatus = (access_token) => {
     };
 };
 
-export { getLoginStatus, setError };
+export { getLoginStatus, setError, setLoading };
