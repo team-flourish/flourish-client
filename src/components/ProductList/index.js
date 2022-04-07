@@ -11,20 +11,22 @@ const ProductList = ({ categoryData, productData }) => {
     productData ||= [];
     const currentPosition = useSelector(state => state.location);
 
-    productData = productData.map(product => {
-        return {
-            ...product,
-            distance: haversine({
-                lat: currentPosition[0],
-                lng: currentPosition[1]
-            }, {
-                lat: product.latitude,
-                lng: product.longitude
-            }
-            ),
-            time: Date.now() - (new Date(product.date_time).getTime())
-        };
-    });
+    if(currentPosition){
+        productData = productData.map(product => {
+            return {
+                ...product,
+                distance: haversine({
+                    lat: currentPosition[0],
+                    lng: currentPosition[1]
+                }, {
+                    lat: product.latitude,
+                    lng: product.longitude
+                }
+                ),
+                time: Date.now() - (new Date(product.date_time).getTime())
+            };
+        });
+    }
 
     const sortedProducts = productData.sort((a, b) => {
         return a.time - b.time;
