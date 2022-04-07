@@ -98,7 +98,7 @@ const ProductPage = () => {
                         style={{backgroundColor: category.color}}
                         >{category.category_name}</div>
                     </div>
-                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price}` : `Expires on ${product.expiry}` }</h2>
+                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price.toFixed(2)}` : `Expires on ${product.expiry}` }</h2>
                     <span id="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
                     <span id="productTime">{`${msToTime(product.time)} ago`}</span>
                 </div>
