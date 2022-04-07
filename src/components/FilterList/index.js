@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
+import { categories as categoriesFromFile } from "../../data";
 import "./style.css";
 
 const FilterList = ({ onSelection, categoryData }) => {
-    const [categories, setCategories] = useState(categoryData || []);
     const [selected, setSelected] = useState([]);
+
+    categoryData ||= categoriesFromFile;
 
     const handleClick = (e) => {
         const value = parseInt(e.target.dataset.id);
@@ -23,7 +25,7 @@ const FilterList = ({ onSelection, categoryData }) => {
         <>
         <h2 className="muted filterListTitle">Filter by food type</h2>
         <div id="filterList">
-            {categories.map((category) => {
+            {categoryData.map((category) => {
                 const isSelected = selected.includes(category.category_id);
                 const style = {
                     backgroundColor: category.color,
