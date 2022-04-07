@@ -47,7 +47,6 @@ const getLoginStatus = (access_token) => {
                     dispatch(setLoginStatus(true));
                 } else {
                     dispatch(setLoginStatus(false));
-                    throw new Error("invalid token");
                 }
             } catch (err) {
                 console.warn(err.message);
@@ -60,10 +59,11 @@ const getLoginStatus = (access_token) => {
 const getLocation = (user) => {
     return async dispatch => {
         navigator.geolocation.getCurrentPosition(location => {
-            dispatch(setLocation({
-                lat: location.coords.latitude,
-                lng: location.coords.longitude
-            }));
+            const latLong = new Float64Array([
+                location.coords.latitude, 
+                location.coords.longitude
+            ]);
+            dispatch(setLocation(latLong));
         }, () => {
             if(user){
                 dispatch(setLocation({
@@ -76,6 +76,8 @@ const getLocation = (user) => {
                     lng: -0.1276473535731588
                 }));
             }
+        }, {
+            enableHighAccuracy: true
         });
     };
 };
