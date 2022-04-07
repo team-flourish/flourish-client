@@ -34,7 +34,7 @@ const ProductList = ({ categoryData, productData }) => {
 
     return (
         <section id="productsList">
-            {productData.length ? 
+            {(productData.length && currentPosition) ? 
             sortedProducts.map((product) => {
                 let age ;
                 if (!msToTime(product.time)){
