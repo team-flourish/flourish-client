@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./actions";
 
 function App() {
-    window.API_HOST = "http://localhost:5000";
+    window.API_HOST = "https://flourish-api.herokuapp.com/";
 
     const dispatch = useDispatch();
 
