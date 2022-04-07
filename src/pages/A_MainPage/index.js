@@ -41,6 +41,9 @@ const MainPage = () => {
  
         <div className="bg-img">  
            <Brand/>
+            <div className="tag-line">
+            On a mission to reduce food waste. 
+            </div>
           <div className="sign-in-up-buttons-container">
 
             <section>
