@@ -19,6 +19,7 @@ const ProfilePage = () => {
             if(json.length){
                 setUserInfo(json[0]);
             } else {
+                window.alert("User no longer exists.");
                 navigateTo("/products");
             }
         }
