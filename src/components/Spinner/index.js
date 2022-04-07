@@ -5,7 +5,7 @@ import "./style.css";
 const Spinner = () => {
     return (
         <div className="spinnerContainer">
-            <svg className="spinner" viewBox="0 0 50 50">
+            <svg data-testid="svg-spinner" className="spinner" viewBox="0 0 50 50">
                 <circle 
                 className="path" 
                 cx="25" cy="25" r="20" 

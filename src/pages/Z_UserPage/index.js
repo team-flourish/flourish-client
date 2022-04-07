@@ -32,14 +32,19 @@ const UserSettings = () => {
     const handleDeleteAccount = async (e) => {
         e.preventDefault();
         dispatch(getLoginStatus());
-        const response = await fetch(`${API_HOST}/users/${user.id}`, {
-            method: 'DELETE'
-        });
-        if(response.status !== 204) {
-            window.alert("Account could not be deleted. Logging out instead...");
+        if (window.confirm('Are you sure you wish to delete your account?')){
+            const response = await fetch(`${API_HOST}/users/${user.id}`, {
+                method: 'DELETE',
+                headers: new Headers({
+                    'Content-Type': 'application/json'})
+            });
+            if(response.status !== 204) {
+                window.alert("Account could not be deleted. Logging out instead...");
+            }
+            handleLogOut(e);
+        };
+
         }
-        handleLogOut(e);
-    };
 
     return (
         <>
@@ -101,7 +106,7 @@ const UserSettings = () => {
 
                     <form
                         id="delete account"
-                        onSubmit={handleDeleteAccount}
+                        onClick = {handleDeleteAccount} 
                         aria-label="Delete account"  
                     > 
                         <input

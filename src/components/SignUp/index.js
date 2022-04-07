@@ -12,6 +12,8 @@ const SignUpForm = () => {
     const [passwrd, setPasswrd] = useState("");
     const [confPass, setConfPass] = useState("");
 
+    console.log('1',passwrd)
+
     const navigateTo = useNavigate();
 
     const handleSubmit = async (e) => {
