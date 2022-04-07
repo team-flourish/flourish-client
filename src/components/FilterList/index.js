@@ -23,7 +23,7 @@ const FilterList = ({ onSelection, categoryData }) => {
 
     return (
         <>
-        <h2 className="muted filterListTitle">Filter by food type</h2>
+        <h2 className="filterListTitle">Filter by food type(s)</h2>
         <div id="filterList">
             {categoryData.map((category) => {
                 const isSelected = selected.includes(category.category_id);

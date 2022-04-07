@@ -5,7 +5,8 @@ div.tag-line{
     margin-top: min(20vh);
     width: min(80vw,374px);
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 500;
+    color: #333;
 }
 
 

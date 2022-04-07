@@ -65,3 +65,7 @@
     width: fit-content;
     display: inline;
 }
+
+.productTime {
+    color: #555;
+}
