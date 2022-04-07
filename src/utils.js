@@ -7,7 +7,7 @@ const msToTime = (duration) => {
 
     if(hours) output += `${hours} hour${hours === 1 ? "" : "s"} `;
     if(minutes) output += `${minutes} minute${minutes === 1 ? "" : "s"} `;
-    if(seconds && minutes < 5) output += `${seconds} second${seconds === 1 ? "" : "s"}`;
+    if(seconds && duration < 300000) output += `${seconds} second${seconds === 1 ? "" : "s"}`;
   
     return output;
 };
