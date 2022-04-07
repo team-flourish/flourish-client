@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings } from "./pages";
+import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings, MapPage } from "./pages";
 import ProfilePage from './pages/ProfilePage';
 
 import { useDispatch } from "react-redux";
@@ -36,6 +36,7 @@ function App() {
                         <Route path="/user/:id" element={<ProfilePage />}/>
                         <Route path="/product/:id" element={<ProductPage />}/>
                         <Route path="/settings" element={<UserSettings />}/>
+                        <Route path="/map" element={<MapPage />}/>
                     </Routes>
                 </Scrollbars>
             </BrowserRouter>
