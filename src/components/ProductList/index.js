@@ -34,7 +34,13 @@ const ProductList = ({ categoryData, productData, currentPosition }) => {
         <section id="productsList">
             {productData.length ? 
             sortedProducts.map((product) => {
-                const age = msToTime(product.time) + " ago";
+                let age ;
+                if (!msToTime(product.time)){
+                    age = "Just posted"
+                }
+                else{
+
+                age = msToTime(product.time) + " ago";}
                 const cat = categoryData.find(c => c.category_id === product.category_id);
                 return (
                     <div key={product.product_id} className="productListItem">
