@@ -5,7 +5,7 @@ const categories = [
     { category_id: 4, value: 'fish', label: 'Fish', category_name: 'Fish', color: "#2AD0D0" },
     { category_id: 5, value: 'fruit', label: 'Fruit', category_name: 'Fruit', color: "#D02A66" },
     { category_id: 6, value: 'meat', label: 'Meat', category_name: 'Meat', color: "#FF3E3E" },
-    { category_id: 7, value: 'vegetables', label: 'Vegetables', category_name: 'Vegetables', color: "#37D02A" },
+    { category_id: 7, value: 'veg', label: 'Veg', category_name: 'Veg', color: "#37D02A" },
     { category_id: 8, value: 'other', label: 'Other', category_name: 'Other', color: "#808080" },
   ]
 

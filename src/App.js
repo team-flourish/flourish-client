@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings } from "./pages";
+import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings, MapPage } from "./pages";
 import ProfilePage from './pages/ProfilePage';
 
 import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./actions";
 
 function App() {
-    window.API_HOST = "https://flourish-api.herokuapp.com";
+    window.API_HOST = "https://flourish-api.herokuapp.com/";
 
     const dispatch = useDispatch();
 
@@ -33,9 +33,10 @@ function App() {
                         <Route path="/login" element={<LogInPage />}/>
                         <Route path="/new" element={<AddaProduct />}/>
                         <Route path="/products" element={<ResultsPage />}/>
-                        <Route path="/user" element={<ProfilePage />}/>
-                        <Route path="/product" element={<ProductPage />}/>
+                        <Route path="/user/:id" element={<ProfilePage />}/>
+                        <Route path="/product/:id" element={<ProductPage />}/>
                         <Route path="/settings" element={<UserSettings />}/>
+                        <Route path="/map" element={<MapPage />}/>
                     </Routes>
                 </Scrollbars>
             </BrowserRouter>
