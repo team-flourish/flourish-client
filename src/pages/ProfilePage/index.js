@@ -33,8 +33,6 @@ const ProfilePage = () => {
         }
     }, []);
 
-    console.log(products);
-
     return (
         <>
         <Header />
