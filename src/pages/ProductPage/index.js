@@ -14,6 +14,7 @@ const ProductPage = () => {
     const [categories, setCategories] = useState(categoriesFromFile);
     const [product, setProduct] = useState(null);
     const [position, setPosition] = useState(null);
+    const [rating, setRating] = useState(0);
 
     // get categories
     useEffect(async () => {
@@ -64,6 +65,36 @@ const ProductPage = () => {
         });
     }, [user]);
 
+    useEffect(async () => {
+        if(user){
+            const response = await fetch(`${API_HOST}/ratings/users/${user.id}/products/${id}`)
+            if(response.status === 200) {
+                const json = await response.json();
+                if(json.length){
+                    setRating(json[0].rating);
+                }
+            }
+        }
+    }, [user]);
+
+    const handleRating = async (rating) => {
+        const reqBody = {
+            user_id: user.id,
+            product_id: product.product_id,
+            rating
+        };
+        const response = await fetch(`${API_HOST}/rating/vote`, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(reqBody)
+        });
+        if(response.status !== 201) {
+            setRating(0);
+        }
+    };
+
     let mapLocation = null;
     let category = categories[0];
 
@@ -84,7 +115,7 @@ const ProductPage = () => {
                 <div id="productImage" style={{backgroundImage: `url('${product.image}')`}}></div>
                 <div id="productInfo">
                     <div className="flex-row space-between margin-b">
-                        <RateProduct />
+                        <RateProduct value={rating} onChange={handleRating} />
                         <div id="productLister">Posted by: <Link to={`/user/${product.user_id}`}>{product.username}</Link>{` (${product.user_rating}⭐)`}</div>
                     </div>
                     <div className="flex-row">

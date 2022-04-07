@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import starIcon from "../../images/icons/star.svg";
 import "./style.css";
 
-const RateProduct = ({ onChange }) => {
+const RateProduct = ({ value, onChange }) => {
     const [rating, setRating] = useState(0);
-    const [actualRating, setActualRating] = useState(0);
+    const [actualRating, setActualRating] = useState(value);
 
     const handleStarHover = (e) => {
         setRating(parseInt(e.target.dataset.stars));

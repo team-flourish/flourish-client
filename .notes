@@ -2,7 +2,6 @@ connect client to server:
 - user profiles
   - show location on profiles
 - product page
-  - rating post request
   - can delete listing if listed by self
 - account page
   - change location and radius
