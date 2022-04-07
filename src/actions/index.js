@@ -1,8 +1,3 @@
-const setLoading = (bool) => ({
-    type: 'LOADING',
-    payload: bool
-});
-
 const setToken = (token) => ({
     type: 'SET_TOKEN',
     payload: token
@@ -18,6 +13,16 @@ const setUser = (user) => ({
     payload: user
 });
 
+const setLocation = (location) => ({
+    type: 'SET_LOCATION',
+    payload: location
+});
+
+const setCategories = (categories) => ({
+    type: 'SET_CATEGORIES',
+    payload: categories
+});
+
 const setError = (error) => ({
     type: 'SET_ERROR',
     payload: error
@@ -25,7 +30,6 @@ const setError = (error) => ({
 
 const getLoginStatus = (access_token) => {
     return async dispatch => {
-        dispatch(setLoading(true));
         if(!access_token){
             dispatch(setLoginStatus(false));
         } else {
@@ -53,4 +57,40 @@ const getLoginStatus = (access_token) => {
     };
 };
 
-export { getLoginStatus, setError, setLoading };
+const getLocation = (user) => {
+    return async dispatch => {
+        navigator.geolocation.getCurrentPosition(location => {
+            dispatch(setLocation({
+                lat: location.coords.latitude,
+                lng: location.coords.longitude
+            }));
+        }, () => {
+            if(user){
+                dispatch(setLocation({
+                    lat: user.location.latitude,
+                    lng: user.location.longitude
+                }));
+            } else {
+                dispatch(setLocation({
+                    lat: 51.517673199104046, 
+                    lng: -0.1276473535731588
+                }));
+            }
+        });
+    };
+};
+
+import { categories as categoriesFromFile } from "../data";
+const getCategories = () => {
+    return async dispatch => {
+        const response = await fetch(`${API_HOST}/products/categories`);
+        if(response.status === 200) {
+            const data = await response.json();
+            dispatch(setCategories(data));
+        } else {
+            dispatch(setCategories(categoriesFromFile));
+        }
+    };
+};
+
+export { getLoginStatus, getLocation, getCategories };
