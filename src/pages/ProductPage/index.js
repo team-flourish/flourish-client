@@ -77,6 +77,8 @@ const ProductPage = () => {
         category = categories.find(c => c.category_id === product.category_id);
     }
 
+    console.log(product);
+
     return (
         <>
         <Header />
@@ -96,6 +98,7 @@ const ProductPage = () => {
                         style={{backgroundColor: category.color}}
                         >{category.category_name}</div>
                     </div>
+                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price}` : `Expires on ${product.expiry}` }</h2>
                     <span id="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
                     <span id="productTime">{`${msToTime(product.time)} ago`}</span>
                 </div>
