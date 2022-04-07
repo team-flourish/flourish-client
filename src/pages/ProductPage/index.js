@@ -4,26 +4,16 @@ import { useSelector } from "react-redux";
 import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
 
-import { categories as categoriesFromFile } from "../../data";
 import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
 const ProductPage = () => {
     const { id } = useParams();
     const user = useSelector(state => state.user);
-    const [categories, setCategories] = useState(categoriesFromFile);
+    const categories = useSelector(state => state.categories);
+    const position = useSelector(state => state.location);
     const [product, setProduct] = useState(null);
-    const [position, setPosition] = useState(null);
     const [rating, setRating] = useState(0);
-
-    // get categories
-    useEffect(async () => {
-        const response = await fetch(`${API_HOST}/products/categories`);
-        if(response.status === 200) {
-            const data = await response.json();
-            setCategories(data);
-        }
-    }, []);
 
     useEffect(async () => {
         if(!position) return;
@@ -33,7 +23,10 @@ const ProductPage = () => {
             setProduct({
                 ...json,
                 distance: haversine(
-                    position, {
+                    {
+                        lat: position[0],
+                        lng: position[1]
+                    }, {
                         lat: json.latitude,
                         lng: json.longitude
                     }
@@ -42,28 +35,6 @@ const ProductPage = () => {
             });
         }
     }, [position]);
-
-    // get location
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(location => {
-            setPosition({
-                lat: location.coords.latitude,
-                lng: location.coords.longitude
-            });
-        }, () => {
-            if(user){
-                setPosition({
-                    lat: user.location.latitude,
-                    lng: user.location.longitude
-                });
-            } else {
-                setPosition({
-                    lat: 51.517673199104046, 
-                    lng: -0.1276473535731588
-                })
-            }
-        });
-    }, [user]);
 
     useEffect(async () => {
         if(user){
@@ -106,6 +77,8 @@ const ProductPage = () => {
         category = categories.find(c => c.category_id === product.category_id);
     }
 
+    console.log(product);
+
     return (
         <>
         <Header />
@@ -125,6 +98,7 @@ const ProductPage = () => {
                         style={{backgroundColor: category.color}}
                         >{category.category_name}</div>
                     </div>
+                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price}` : `Expires on ${product.expiry}` }</h2>
                     <span id="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
                     <span id="productTime">{`${msToTime(product.time)} ago`}</span>
                 </div>

@@ -18,7 +18,7 @@ main.productpage {
 #productInfo {
     width: 100%;
     padding-top: 15px;
-    padding-bottom: 28px;
+    padding-bottom: 12px;
 }
 
 #productLister {
@@ -32,11 +32,19 @@ main.productpage {
     margin: 7px;
 }
 
+#productInfo .productPriceExpiry {
+    display: block;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 17px;
+}
+
 #productDistance, #productTime {
     font-weight: 600;
     font-size: 18px;
     display: block;
     text-align: center;
+    margin: 10px 0;
 }
 
 #productImage {

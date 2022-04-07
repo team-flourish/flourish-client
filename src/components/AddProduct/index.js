@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import CreatableSelect from "react-select/creatable";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import postcodes from "node-postcodes.io";
-import './style.css'
-import '../style.css'
+import './style.css';
+import '../style.css';
 
 import { ImageSelector, Map, Spinner } from '..';
-import { categories, products } from '../../data.js';
-import { setLoading } from '../../actions';
+import { products } from '../../data.js';
 
 const AddProduct = () => {
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const user = useSelector(state => state.user);
-    const loading = useSelector(state => state.loading);
+    const categories = useSelector(state => state.categories.map(cat => {
+        return { ...cat,
+            label: cat.category_name,
+            value: cat.category_name.toLowerCase()
+        };
+    }));
     const [file, setFile] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -24,8 +27,8 @@ const AddProduct = () => {
     const [location, setLocation] = useState(null);
     const [mapCenter, setMapCenter] = useState(null);
     const [postcode, setPostcode] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const dispatch = useDispatch();
     const navigateTo = useNavigate();
 
     useEffect(() => {
@@ -63,15 +66,10 @@ const AddProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        dispatch(setLoading(true));
+        setLoading(true);
 
         let isValid = file && selectedCategory && selectedProduct && location;
-
         if(isRetail) isValid &&= price; else isValid &&= expiry;
-
-        console.log(file, selectedCategory, selectedProduct, location);
-        console.log(price, expiry);
 
         if(isValid){
             // send cloudinary
@@ -104,7 +102,6 @@ const AddProduct = () => {
                 });
                 if(apiResponse.status === 201){
                     // go to products page
-                    dispatch(setLoading(false));
                     navigateTo("/products");
                 } else {
                     // api error
@@ -118,13 +115,8 @@ const AddProduct = () => {
             // missing fields
             console.log("missing fields");
         }
+        setLoading(false);
     }
-
-    useEffect(() => {
-        if(isLoggedIn === false){
-            navigateTo("/");
-        }
-    }, [isLoggedIn]);
 
     return (
         <>

@@ -7,7 +7,7 @@ import "./style.css";
 
 const ProfilePage = () => {
     const [userInfo, setUserInfo] = useState(null);
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
     const { id } = useParams();
 
     const navigateTo = useNavigate();
@@ -45,7 +45,7 @@ const ProfilePage = () => {
                 <h1>{`${userInfo.username} (${userInfo.rating}⭐)`}</h1>
                 <hr />
                 <h2>{`${userInfo.username}'${userInfo.username.charAt(userInfo.length - 1) === 's' ? '' : 's'} Listed Items`}</h2>
-                <ProductList productData={products} />
+                {products === null ? <h2>Loading...</h2> : <ProductList productData={products} />}
             </main>
         }
         <NavBar />
