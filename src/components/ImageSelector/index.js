@@ -36,6 +36,7 @@ const ImageSelector = ({ onChange, value }) => {
                 { !image && '+'}
             </label>
             <input 
+                aria-label="image-input"
                 id="imageInput" 
                 type="file" 
                 onChange={handleChange}
