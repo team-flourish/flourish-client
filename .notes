@@ -5,12 +5,12 @@ connect client to server:
   - rating post request
   - can delete listing if listed by self
 - account page
-  - log out button
-  - link view details to personal account
   - change location and radius
-  - delete account (?)
 - map page
   - change map component to have multiple markers
   - fetch products and display on map
   - marker click event listener -> go to product page
   - marker text
+- extra
+  - remove alerts from login page
+  - change link style
