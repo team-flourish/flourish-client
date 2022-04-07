@@ -9,8 +9,7 @@ import { getCategories, getLocation, getLoginStatus } from "./actions";
 import { Spinner } from './components';
 
 function App() {
-    // window.API_HOST = "https://flourish-api.herokuapp.com";
-    window.API_HOST = "http://localhost:5000";
+    window.API_HOST = "https://flourish-api.herokuapp.com";
 
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const user = useSelector(state => state.user);
