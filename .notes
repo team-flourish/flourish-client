@@ -2,7 +2,8 @@ connect client to server:
 - user profiles
   - show location on profiles
 - product page
-  - can delete listing if listed by self
+  - can delete listing if listed by self\
+  - can't rate own items
 - account page
   - change location and radius
   - modals
@@ -14,4 +15,3 @@ connect client to server:
   - marker text
 - extra
   - change link style
-
