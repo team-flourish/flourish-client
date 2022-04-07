@@ -4,26 +4,16 @@ import { useSelector } from "react-redux";
 import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
 
-import { categories as categoriesFromFile } from "../../data";
 import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
 const ProductPage = () => {
     const { id } = useParams();
     const user = useSelector(state => state.user);
-    const [categories, setCategories] = useState(categoriesFromFile);
+    const categories = useSelector(state => state.categories);
+    const position = useSelector(state => state.location);
     const [product, setProduct] = useState(null);
-    const [position, setPosition] = useState(null);
     const [rating, setRating] = useState(0);
-
-    // get categories
-    useEffect(async () => {
-        const response = await fetch(`${API_HOST}/products/categories`);
-        if(response.status === 200) {
-            const data = await response.json();
-            setCategories(data);
-        }
-    }, []);
 
     useEffect(async () => {
         if(!position) return;
@@ -33,7 +23,10 @@ const ProductPage = () => {
             setProduct({
                 ...json,
                 distance: haversine(
-                    position, {
+                    {
+                        lat: position[0],
+                        lng: position[1]
+                    }, {
                         lat: json.latitude,
                         lng: json.longitude
                     }
@@ -42,28 +35,6 @@ const ProductPage = () => {
             });
         }
     }, [position]);
-
-    // get location
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(location => {
-            setPosition({
-                lat: location.coords.latitude,
-                lng: location.coords.longitude
-            });
-        }, () => {
-            if(user){
-                setPosition({
-                    lat: user.location.latitude,
-                    lng: user.location.longitude
-                });
-            } else {
-                setPosition({
-                    lat: 51.517673199104046, 
-                    lng: -0.1276473535731588
-                })
-            }
-        });
-    }, [user]);
 
     useEffect(async () => {
         if(user){

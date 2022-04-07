@@ -1,26 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { categories as categoriesFromFile } from "../../data";
 import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
-const ProductList = ({ categoryData, productData, currentPosition }) => {
+const ProductList = ({ categoryData, productData }) => {
     categoryData ||= categoriesFromFile;
     productData ||= [];
-    currentPosition ||= {
-        lat: 51.517673199104046, 
-        lng: -0.1276473535731588
-    };
+    const currentPosition = useSelector(state => state.location);
 
     productData = productData.map(product => {
         return {
             ...product,
-            distance: haversine(
-                currentPosition, {
-                    lat: product.latitude,
-                    lng: product.longitude
-                }
+            distance: haversine({
+                lat: currentPosition[0],
+                lng: currentPosition[1]
+            }, {
+                lat: product.latitude,
+                lng: product.longitude
+            }
             ),
             time: Date.now() - (new Date(product.date_time).getTime())
         };
