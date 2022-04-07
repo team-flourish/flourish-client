@@ -28,7 +28,7 @@ function App() {
         user && dispatch(getLocation(user));
     }, [user]);
 
-    const loading = isLoggedIn === null && !(isLoggedIn && user && categories && location) && !(isLoggedIn === false);
+    const loading = isLoggedIn === null || !(isLoggedIn && user && categories && location) && !(isLoggedIn === false);
 
     return (
         <React.StrictMode>
