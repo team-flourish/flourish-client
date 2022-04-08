@@ -39,13 +39,7 @@ const ProductList = ({ productData }) => {
         <section id="productsList">
             {productData.length ? 
             sortedProducts.map((product) => {
-                let age ;
-                if (!msToTime(product.time)){
-                    age = "Just posted"
-                }
-                else{
-
-                age = msToTime(product.time) + " ago";}
+                const age = msToTime(product.time);
                 const cat = categoryData.find(c => c.category_id === product.category_id);
                 return (
                     <div key={product.product_id} className="productListItem">
@@ -58,7 +52,7 @@ const ProductList = ({ productData }) => {
                                 style={{backgroundColor: cat.color}}
                                 >{cat.category_name}</div>
                             </div>
-                                <span className="productLister">by: <Link to={`/user/${product.user_id}`}>{product.username}</Link> ({product.user_rating}⭐)</span>
+                                <span className="productLister">by: <Link to={`/user/${product.user_id}`}>{product.username}</Link> ({product.user_rating.toFixed(1)}⭐)</span>
                             <span className="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
                             <span className="productTime">{age}</span>
                         </div>
