@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getLoginStatus } from "../../actions";
+import { getLoginStatus, setUser } from "../../actions";
 import { Spinner } from "../../components";
 
 import { Header, NavBar } from "../../layout";
@@ -10,11 +10,47 @@ import './style.css';
 
 const UserSettings = () => {
     const user = useSelector(state => state.user);
+    const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
 
     const handleSubmit = new Function();
+
+    const handleChangeLocation = (e) => {
+        e.preventDefault();
+        navigateTo("/setlocation");
+    };
+
+    const handleChangeRadius = async (e) => {
+        e.preventDefault();
+        let radius = window.prompt("Enter your new radius:", user.radius);
+        radius = parseFloat(radius);
+        if(isNaN(radius)){
+            alert("Invalid radius.");
+        } else {
+            setLoading(true);
+            const reqBody = {
+                updated_radius: radius
+            };
+            const response = await fetch(`${API_HOST}/users/${user.id}/radius`, {
+                method: 'PATCH',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(reqBody)
+            });
+            if(response.status === 201){
+                dispatch(setUser({
+                    ...user, radius
+                }))
+                alert("Search radius updated.");
+            } else {
+                alert("Could not update radius");
+            }
+            setLoading(false);
+        }
+    };
 
     const handleViewProfile = (e) => {
         e.preventDefault();
@@ -49,14 +85,14 @@ const UserSettings = () => {
     return (
         <>
         <Header />
-        {!user ? 
+        {(!user || loading) ? 
             <Spinner />
         :    
             <main className="make-me-flex-3">
                 <div style={{height:'5vh'}}> </div>
                     <form
                         id="change-location"
-                        onSubmit={handleSubmit}
+                        onSubmit={handleChangeLocation}
                         aria-label="Change location"  
                     > 
                         <input
@@ -68,7 +104,7 @@ const UserSettings = () => {
 
                     <form
                         id="change-radius"
-                        onSubmit={handleSubmit}
+                        onSubmit={handleChangeRadius}
                         aria-label="Change radius"  
                     > 
                         <input

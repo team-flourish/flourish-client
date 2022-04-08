@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Map, RateProduct, Spinner } from "../../components";
 import { Header, NavBar } from "../../layout";
@@ -14,6 +14,9 @@ const ProductPage = () => {
     const position = useSelector(state => state.location);
     const [product, setProduct] = useState(null);
     const [rating, setRating] = useState(0);
+    const [loading, setLoading] = useState(false);
+
+    const navigateTo = useNavigate();
 
     useEffect(async () => {
         if(!position) return;
@@ -65,6 +68,28 @@ const ProductPage = () => {
             setRating(0);
         }
     };
+    
+    const handleDelete = async (e) => {
+        setLoading(true);
+        const token = window.localStorage.getItem('access_token');
+        if(token) {
+            const response = await fetch(`${API_HOST}/products/${id}`, {
+                method: 'DELETE',
+                headers: new Headers({
+                    'Authorization': `Bearer ${token}`
+                })
+            });
+            if(response.status === 204){
+                navigateTo(`/user/${user.id}`);
+            } else {
+                window.alert("Could not delete item.");
+            }
+        } else {
+            window.alert("You are not logged in.");
+            window.location.reload();
+        }
+        setLoading(false);
+    };
 
     let mapLocation = null;
     let category = categories[0];
@@ -77,18 +102,25 @@ const ProductPage = () => {
         category = categories.find(c => c.category_id === product.category_id);
     }
 
-    console.log(product);
-
     return (
         <>
         <Header />
-        {!product ? <Spinner /> : 
+        {(!product || loading) ? <Spinner /> : 
         <main className="productpage">
             <section>
                 <div id="productImage" style={{backgroundImage: `url('${product.image}')`}}></div>
                 <div id="productInfo">
                     <div className="flex-row space-between margin-b">
-                        <RateProduct value={rating} onChange={handleRating} />
+                        {(product.user_id === user.id) ?
+                            <input 
+                                className="delete-button" 
+                                type="submit" 
+                                value="Delete"
+                                onClick={handleDelete}
+                            />
+                        :
+                            <RateProduct value={rating} onChange={handleRating} />
+                        }
                         <div id="productLister">Posted by: <Link to={`/user/${product.user_id}`}>{product.username}</Link>{` (${product.user_rating}⭐)`}</div>
                     </div>
                     <div className="flex-row">
@@ -98,7 +130,7 @@ const ProductPage = () => {
                         style={{backgroundColor: category.color}}
                         >{category.category_name}</div>
                     </div>
-                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price}` : `Expires on ${product.expiry}` }</h2>
+                    <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price.toFixed(2)}` : `Expires on ${product.expiry}` }</h2>
                     <span id="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
                     <span id="productTime">{`${msToTime(product.time)} ago`}</span>
                 </div>

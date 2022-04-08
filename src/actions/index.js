@@ -66,15 +66,15 @@ const getLocation = (user) => {
             dispatch(setLocation(latLong));
         }, () => {
             if(user){
-                dispatch(setLocation({
-                    lat: user.location.latitude,
-                    lng: user.location.longitude
-                }));
+                dispatch(setLocation(new Float64Array([
+                    user.location.latitude,
+                    user.location.longitude
+                ])));
             } else {
-                dispatch(setLocation({
-                    lat: 51.517673199104046, 
-                    lng: -0.1276473535731588
-                }));
+                dispatch(setLocation(new Float64Array([
+                    51.517673199104046, 
+                    -0.1276473535731588
+                ])));
             }
         }, {
             enableHighAccuracy: true
@@ -95,4 +95,4 @@ const getCategories = () => {
     };
 };
 
-export { getLoginStatus, getLocation, getCategories };
+export { getLoginStatus, getLocation, getCategories, setUser, setLocation };

@@ -7,34 +7,38 @@ import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
 const ProductList = ({ categoryData, productData }) => {
+    const user = useSelector(state => state.user);
+
     categoryData ||= categoriesFromFile;
     productData ||= [];
     const currentPosition = useSelector(state => state.location);
 
-    if(currentPosition){
-        productData = productData.map(product => {
-            return {
-                ...product,
-                distance: haversine({
-                    lat: currentPosition[0],
-                    lng: currentPosition[1]
-                }, {
-                    lat: product.latitude,
-                    lng: product.longitude
-                }
-                ),
-                time: Date.now() - (new Date(product.date_time).getTime())
-            };
-        });
-    }
+    productData = productData.map(product => {
+        return {
+            ...product,
+            distance: haversine({
+                lat: currentPosition[0],
+                lng: currentPosition[1]
+            }, {
+                lat: product.latitude,
+                lng: product.longitude
+            }
+            ),
+            time: Date.now() - (new Date(product.date_time).getTime())
+        };
+    });
 
-    const sortedProducts = productData.sort((a, b) => {
+    const filteredProducts = productData.filter(product => {
+        return product.distance <= user.radius;
+    });
+
+    const sortedProducts = filteredProducts.sort((a, b) => {
         return a.time - b.time;
     });
 
     return (
         <section id="productsList">
-            {(productData.length && currentPosition) ? 
+            {productData.length ? 
             sortedProducts.map((product) => {
                 let age ;
                 if (!msToTime(product.time)){

@@ -1,17 +1,6 @@
 connect client to server:
 - user profiles
   - show location on profiles
-- product page
-  - can delete listing if listed by self
-- account page
-  - change location and radius
-  - modals
 - map page
-  - center on current location
-  - change map component to have multiple markers
-  - fetch products and display on map
   - marker click event listener -> go to product page
   - marker text
-- extra
-  - change link style
-
