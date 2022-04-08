@@ -1,11 +1,6 @@
 connect client to server:
 - user profiles
   - show location on profiles
-- account page
-  - change location and radius
-  - modals
 - map page
   - marker click event listener -> go to product page
   - marker text
-- extra
-  - change link style
