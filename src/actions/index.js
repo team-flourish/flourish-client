@@ -95,4 +95,4 @@ const getCategories = () => {
     };
 };
 
-export { getLoginStatus, getLocation, getCategories };
+export { getLoginStatus, getLocation, getCategories, setUser, setLocation };

@@ -1,0 +1,10 @@
+main.setlocation {
+    height: 100%;
+    padding-bottom: 295px;
+    text-align: center;
+}
+
+.setlocation > #map {
+    max-height: unset;
+    height: 100%;
+}

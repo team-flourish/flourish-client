@@ -7,3 +7,4 @@ export { default as ProfilePage } from "./ProfilePage";
 export { default as ProductPage } from "./ProductPage";
 export { default as UserSettings } from "./Z_UserPage";
 export { default as MapPage } from "./MapPage";
+export { default as SetLocationPage } from "./SetLocationPage";

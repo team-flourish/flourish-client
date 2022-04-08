@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings, MapPage } from "./pages";
+import { MainPage, SignUpPage, LogInPage, AddaProduct, ResultsPage, ProductPage, UserSettings, MapPage, SetLocationPage } from "./pages";
 import ProfilePage from './pages/ProfilePage';
 
 import { useDispatch, useSelector } from "react-redux";
@@ -53,6 +53,7 @@ function App() {
                             <Route path="/product/:id" element={!isLoggedIn ? <Navigate replace to="/" /> : <ProductPage />}/>
                             <Route path="/settings" element={!isLoggedIn ? <Navigate replace to="/" /> : <UserSettings />}/>
                             <Route path="/map" element={!isLoggedIn ? <Navigate replace to="/" /> : <MapPage />}/>
+                            <Route path="/setlocation" element={!isLoggedIn ? <Navigate replace to="/" /> : <SetLocationPage />}/>
                         </Routes>
                     }
                 </Scrollbars>
