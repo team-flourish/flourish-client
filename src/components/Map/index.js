@@ -19,6 +19,7 @@ const Map = ({ center, marker, productData, onMapClick }) => {
             center={center} 
             defaultZoom={14}
             onClick={onMapClick || new Function()}
+            yesIWantToUseGoogleMapApiInternals
             >
                 {marker && 
                     <MapMarker
