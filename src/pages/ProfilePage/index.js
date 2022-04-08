@@ -40,7 +40,7 @@ const ProfilePage = () => {
             <Spinner />
         :
             <main className="profilepage">
-                <h1>{`${userInfo.username} (${userInfo.rating}⭐)`}</h1>
+                <h1>{`${userInfo.username} (${userInfo.rating.toFixed(1)}⭐)`}</h1>
                 <hr />
                 <h2>{`${userInfo.username}'${userInfo.username.charAt(userInfo.length - 1) === 's' ? '' : 's'} Listed Items`}</h2>
                 {products === null ? <h2>Loading...</h2> : <ProductList productData={products} />}

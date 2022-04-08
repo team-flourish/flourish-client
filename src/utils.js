@@ -1,4 +1,6 @@
 const msToTime = (duration) => {
+    if(duration <= 999) return "Just posted";
+
     let seconds = Math.floor((duration / 1000) % 60);
     let minutes = Math.floor((duration / (1000 * 60)) % 60);
     let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
@@ -9,7 +11,7 @@ const msToTime = (duration) => {
     if(minutes) output += `${minutes} minute${minutes === 1 ? "" : "s"} `;
     if(seconds && duration < 300000) output += `${seconds} second${seconds === 1 ? "" : "s"}`;
   
-    return output;
+    return output + " ago";
 };
 
 const haversine = (A, B) => {

@@ -132,7 +132,7 @@ const ProductPage = () => {
                     </div>
                     <h2 className="productPriceExpiry">{product.is_retail ? `£${product.price.toFixed(2)}` : `Expires on ${product.expiry}` }</h2>
                     <span id="productDistance">{`${product.distance.toFixed(2)}km away`}</span>
-                    <span id="productTime">{`${msToTime(product.time)} ago`}</span>
+                    <span id="productTime">{`${msToTime(product.time)}`}</span>
                 </div>
                 <Map center={mapLocation} marker={mapLocation} />
             </section>
