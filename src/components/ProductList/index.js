@@ -2,14 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { categories as categoriesFromFile } from "../../data";
 import { msToTime, haversine } from "../../utils";
 import "./style.css";
 
-const ProductList = ({ categoryData, productData }) => {
+const ProductList = ({ productData }) => {
     const user = useSelector(state => state.user);
+    const categoryData = useSelector(state => state.categories);
 
-    categoryData ||= categoriesFromFile;
     productData ||= [];
     const currentPosition = useSelector(state => state.location);
 
