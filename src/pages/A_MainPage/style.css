@@ -1,0 +1,101 @@
+div.tag-line{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: min(20vh);
+    width: min(80vw,374px);
+    font-size: 40px;
+    font-weight: 500;
+    color: #333;
+}
+
+
+
+div.sign-in-up-buttons-container{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    /* margin-top: min(70vh, 550px); */
+    display: flex;
+    flex-direction: column;
+    bottom: 10vh;
+}
+
+
+button.log-in{
+    position: relative;
+    width: min(80vw,374px);
+    min-height: 60px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 30px;
+    font-weight: 400;
+    color: azure;
+    border-radius: 12px;
+}
+
+section.sign-up-row{
+    margin-top: 50px;
+}
+
+button.sign-up{
+    width: 122px;
+    min-height: 31px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: azure;
+    border-radius: 5px;
+}
+
+div.make-me-flex{
+    width: min(78vw,325px);
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+span.span-signin{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 410px) {
+    span.span-signin{
+        font-size: 13px;
+    }
+    button.sign-up{
+        font-size: 15px;
+    }
+    button.log-in{
+        font-size: 25px;
+    }
+  }
+
+/* backgorund image below */
+div.bg-img {
+    width: 100vw;
+    height:100vh;
+    display: block;
+    position: relative;
+  }
+  
+div.bg-img::after {
+    content: "";
+    background-image: url('../../images/toa-heftiba-l_ExpFwwOEg-unsplash.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    margin:0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }

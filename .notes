@@ -1,0 +1,6 @@
+connect client to server:
+- user profiles
+  - show location on profiles
+- map page
+  - marker click event listener -> go to product page
+  - marker text

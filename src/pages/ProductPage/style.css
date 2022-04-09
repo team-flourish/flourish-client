@@ -1,0 +1,66 @@
+main.productpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.productpage > section {
+    background-color: #C9DBD2;
+    width: 95%;
+    max-width: 1050px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 85px;
+}
+
+#productInfo {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 12px;
+}
+
+#productLister {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+
+.productpage h2, .productpage .productCategory {
+    display: inline;
+    margin: 7px;
+}
+
+#productInfo .productPriceExpiry {
+    display: block;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 17px;
+}
+
+#productDistance, #productTime {
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#productImage {
+    width: 100%;
+    height: calc(100vw * .95);
+    max-height: 620px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input.delete-button[type="submit"] {
+    min-height: unset;
+    width: unset;
+    padding: 10px;
+    margin-top: 0;
+    background-color: firebrick;
+    font-size: 25px;
+}

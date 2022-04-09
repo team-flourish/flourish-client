@@ -1,0 +1,19 @@
+header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* logo */
+
+.brand {
+    box-shadow: 0 4px 4px #3D7E6099;
+}
+
+.brand > h1 {
+    padding: 0.4em 0;
+    font-weight: 900;
+    font-size: 50px;
+}

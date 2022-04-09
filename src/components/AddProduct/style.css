@@ -1,0 +1,48 @@
+#add-a-product{
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 5vh;
+    padding-bottom: 105px;
+}
+
+input[type=submit] {
+    position: relative;
+    width: min(80vw,374px);
+    min-height: 60px;
+    background-color: #3D7E60;
+    border: 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: azure;
+    border-radius: 12px;
+    margin-top: 2.5em;
+}
+
+h2.add-product-title{
+    text-align: center;
+    font-size: 35px;
+}
+
+[type=date], [type=number] {
+    font-size: 22px;
+    width: 100%;
+    padding: 9px;
+}
+
+@media screen and (max-height: 700px) {
+    #form-registration{
+        margin-top: 1vh;
+    }
+
+    input[type=submit] {
+        min-height: 40px;
+        margin-top: 5vh;
+    }
+
+    h2.add-product-title{
+        font-size: 30px;
+    }
+}
